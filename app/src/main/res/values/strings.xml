@@ -2,4 +2,10 @@
     <string name="app_name">All Walks of Life</string>
     <string name="user_info_name">Profile</string>
     <string name="title_activity_current_run">Current Run</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="time_elapsed">Time Elapsed</string>
+    <string name="distance">Distance</string>
+    <string name="base_time">0:00:00</string>
+    <string name="base_distance">0 miles</string>
 </resources>

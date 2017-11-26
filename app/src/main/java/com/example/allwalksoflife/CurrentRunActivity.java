@@ -3,13 +3,18 @@ package com.example.allwalksoflife;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Location;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -23,7 +28,13 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
+
+import org.w3c.dom.Text;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class CurrentRunActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -31,15 +42,18 @@ public class CurrentRunActivity extends AppCompatActivity implements OnMapReadyC
     private FusedLocationProviderClient mFusedLocationClient;
     private LocationRequest mLocationRequest;
     private LocationCallback mLocationCallback;
-    private Marker currentPositionMarker;
     private String TAG = "CurrentRunActivity";
+    private PolylineOptions currentRoute;
+    private boolean finishedRunning;
     private int REQUEST_PERMISSION = 1;
+    private int secondsElapsed = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_current_run);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        currentRoute = new PolylineOptions();
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         createLocationRequest();
         mLocationCallback = new LocationCallback() {
@@ -49,11 +63,27 @@ public class CurrentRunActivity extends AppCompatActivity implements OnMapReadyC
                 if (lastLocation != null) {
                     double latitude = lastLocation.getLatitude();
                     double longitude = lastLocation.getLongitude();
-                    Log.d(TAG, "onLocationResult: " + "(" + latitude + ", " + longitude + ")");
-                    currentPositionMarker.setPosition(new LatLng(latitude, longitude));
+                    LatLng position = new LatLng(latitude, longitude);
+                    currentRoute.add(position);
+                    Log.d(TAG, "position = " + position);
                 }
             }
         };
+
+        findViewById(R.id.startStopButton).setOnClickListener(new View.OnClickListener() {
+            private boolean running = false;
+            @Override
+            public void onClick(View view) {
+                if(!running && !finishedRunning) {
+                    running = true;
+                    startTimer();
+                    ((Button)findViewById(R.id.startStopButton)).setText(getString(R.string.stop));
+                } else {
+                    finishedRunning = true;
+                }
+                mMap.addPolyline(currentRoute.width(3.0f).color(Color.BLUE));
+            }
+        });
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -69,6 +99,7 @@ public class CurrentRunActivity extends AppCompatActivity implements OnMapReadyC
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      */
+    @SuppressLint("MissingPermission")
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -76,12 +107,13 @@ public class CurrentRunActivity extends AppCompatActivity implements OnMapReadyC
         // Add a marker in Sydney and move the camera
         getLastLocation();
         startLocationUpdates();
+        mMap.setMyLocationEnabled(true);
     }
 
     private void createLocationRequest() {
         mLocationRequest = new LocationRequest();
-        mLocationRequest.setInterval(1000);
-        mLocationRequest.setFastestInterval(500);
+        mLocationRequest.setInterval(5000);
+        mLocationRequest.setFastestInterval(5000);
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
     }
 
@@ -104,9 +136,7 @@ public class CurrentRunActivity extends AppCompatActivity implements OnMapReadyC
                         double latitude = location.getLatitude();
                         double longitude = location.getLongitude();
                         LatLng position = new LatLng(latitude, longitude);
-                        currentPositionMarker =
-                                mMap.addMarker(new MarkerOptions()
-                                        .position(position));
+                        currentRoute.add(position);
                         mMap.moveCamera(CameraUpdateFactory.newLatLng(position));
                         mMap.moveCamera(CameraUpdateFactory.zoomTo(15.0f));
                     }
@@ -129,5 +159,26 @@ public class CurrentRunActivity extends AppCompatActivity implements OnMapReadyC
             }
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    private void startTimer() {
+        final Handler timer = new Handler();
+        timer.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (!finishedRunning) secondsElapsed++;
+                int seconds = secondsElapsed % 60;
+                int minutes = (secondsElapsed / 60) % 60;
+                int hours = (secondsElapsed / 3600);
+                String time = String.format("%d:%02d:%02d", hours, minutes, seconds);
+
+                ((TextView)findViewById(R.id.timeElapsed)).setText(time);
+                timer.postDelayed(this, 1000);
+            }
+        }, 1000);
+    }
+
+    private void stopTimer() {
+
     }
 }
