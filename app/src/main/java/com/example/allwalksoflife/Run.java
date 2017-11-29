@@ -1,4 +1,4 @@
-package com.example.shvow.finalprojactiveactiv;
+package com.example.allwalksoflife;
 
 import android.location.*;
 
