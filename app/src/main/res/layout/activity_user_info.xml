@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:layout_gravity="fill_horizontal"
     android:columnCount="3"
-    android:paddingTop="10dp"
+    android:padding="10dp"
+    android:paddingLeft="10dp"
     tools:context="com.example.allwalksoflife.UserInfoActivity">
 
     <ImageView
