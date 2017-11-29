@@ -1,7 +1,7 @@
 # All-Walks-of-Life
 Mobile Apps Fall 2017 Final Project
 
-## ToDo
+## TO DO
 - Run class
   - [ ] Name (String)
   - [ ] Time (int)
@@ -15,9 +15,12 @@ Mobile Apps Fall 2017 Final Project
 - User Info Activity
   - [ ] Save changes
   - [ ] Make information editable
-  - [ ] (optional) Add longest (time) run
+  - [ ] Add longest (time) run
 - Pre/Post Run activities
   - [ ] Split activity into 2
   - [ ] Wrap the current run
   - [ ] Link current run up to it
 - Database Helper(s)
+
+## Stretch Goals
+- Save routes to view later
