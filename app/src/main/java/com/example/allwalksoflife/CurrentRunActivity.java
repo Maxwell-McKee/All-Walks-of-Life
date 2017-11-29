@@ -8,7 +8,6 @@ import android.location.Location;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -26,17 +25,8 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
-
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class CurrentRunActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -83,6 +73,7 @@ public class CurrentRunActivity extends AppCompatActivity implements OnMapReadyC
                     ((Button)findViewById(R.id.startStopButton)).setText(getString(R.string.stop));
                 } else {
                     finishedRunning = true;
+                    view.setEnabled(false);
                 }
                 mMap.addPolyline(currentRoute.width(5.0f).color(Color.BLUE));
             }
