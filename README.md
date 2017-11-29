@@ -10,6 +10,7 @@ Mobile Apps Fall 2017 Final Project
   - [ ] Activity Type (String)
 - Main Activity
   - [ ] Show all runs in chronological order
+    - Use `ArrayAdapter.insert(Run r, 0)` to add to top of the list
   - [ ] Menu item to start a new run
   - [ ] Menu item to see/edit profile
 - User Info Activity
@@ -24,3 +25,7 @@ Mobile Apps Fall 2017 Final Project
 
 ## Stretch Goals
 - Save routes to view later
+
+## Image Sources
+Run: https://material.io/icons/#ic_directions_run  
+Person: https://material.io/icons/#ic_person
