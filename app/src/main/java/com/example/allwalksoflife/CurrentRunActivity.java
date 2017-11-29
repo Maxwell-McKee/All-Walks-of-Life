@@ -33,6 +33,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -77,11 +79,12 @@ public class CurrentRunActivity extends AppCompatActivity implements OnMapReadyC
                 if(!running && !finishedRunning) {
                     running = true;
                     startTimer();
+                    startDistanceCalculations();
                     ((Button)findViewById(R.id.startStopButton)).setText(getString(R.string.stop));
                 } else {
                     finishedRunning = true;
                 }
-                mMap.addPolyline(currentRoute.width(3.0f).color(Color.BLUE));
+                mMap.addPolyline(currentRoute.width(5.0f).color(Color.BLUE));
             }
         });
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -178,7 +181,31 @@ public class CurrentRunActivity extends AppCompatActivity implements OnMapReadyC
         }, 1000);
     }
 
-    private void stopTimer() {
-
+    private void startDistanceCalculations() {
+        final Handler distanceCalc = new Handler();
+        distanceCalc.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                float distanceSum = 0.0f;
+                float[] distance = new float[1];
+                LatLng latLng1 = currentRoute.getPoints().get(0);
+                if (currentRoute.getPoints().size() > 1) {
+                    for (int i = 1; i < currentRoute.getPoints().size(); i++) {
+                        LatLng latLng2 = currentRoute.getPoints().get(i);
+                        Location.distanceBetween(
+                                latLng1.latitude,
+                                latLng1.longitude,
+                                latLng2.latitude,
+                                latLng2.longitude,
+                                distance
+                        );
+                        latLng1 = latLng2;
+                        distanceSum += distance[0];
+                    }
+                    ((TextView)findViewById(R.id.distance)).setText("" + distanceSum + " m");
+                }
+                if (!finishedRunning) distanceCalc.postDelayed(this, 5000);
+            }
+        }, 5000);
     }
 }
