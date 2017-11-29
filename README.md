@@ -24,3 +24,7 @@ Mobile Apps Fall 2017 Final Project
 
 ## Stretch Goals
 - Save routes to view later
+
+## Image Sources
+Run: https://material.io/icons/#ic_directions_run
+Person: https://material.io/icons/#ic_person
