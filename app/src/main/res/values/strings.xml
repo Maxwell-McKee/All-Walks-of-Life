@@ -8,4 +8,16 @@
     <string name="distance">Distance</string>
     <string name="base_time">0:00:00</string>
     <string name="base_distance">0.0 m</string>
+    <string name="fastest_run">Fastest Run</string>
+    <string name="furthest_run">Furthest Run</string>
+    <string name="farthest_run">Farthest Run</string>
+    <string name="longest_run">Longest Run</string>
+    <string name="time_label">Time:</string>
+    <string name="distance_label">Distance:</string>
+    <string name="avg_speed">Avg Speed:</string>
+    <string-array name="activity_types">
+        <item>Runner</item>
+        <item>Walker</item>
+        <item>Biker</item>
+    </string-array>
 </resources>
