@@ -6,15 +6,19 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.google.android.gms.maps.model.LatLng;
+
+import java.util.List;
+
 public class RunDatabaseHelper extends SQLiteOpenHelper {
     static final String TAG = "RunDatabaseHelper";
     private static final String DATABASE_NAME = "runDatabase";
     private static final int DATABASE_VERSION = 1;
     private static final String USER_TABLE = "userTable";
     private static final String RUNS_TABLE = "runsTable";
-    private static final String _ID = "_id";
+    public static final String _ID = "_id";
     // User table columns
-    private static final String USERNAME = "username",          // String
+    public static final String USERNAME = "username",          // String
                                 AGE = "age",                    // int
                                 LOCATION = "location",          // String
                                 TYPE = "type",                  // String
@@ -22,13 +26,13 @@ public class RunDatabaseHelper extends SQLiteOpenHelper {
                                 FURTHEST_RUN = "furthestRun",   // String
                                 LONGEST_RUN = "longestRun";     // String
     // Runs table columns
-    private static final String NAME = "name",                  // String
+    public static final String NAME = "name",                  // String
                                 TIME = "time",                  // int
                                 DISTANCE = "distance",          // double
                                 AVG_SPEED = "avdSpeed";         // double
 
     // Run table columns
-    private static final String LATITUDE = "latitude",          // double
+    public static final String LATITUDE = "latitude",          // double
                                 LONGITUDE = "longitude";        // double
 
     public RunDatabaseHelper(Context context) {
@@ -51,7 +55,8 @@ public class RunDatabaseHelper extends SQLiteOpenHelper {
                 NAME + " TEXT, " +
                 TIME + " INTEGER, " +
                 DISTANCE + " FLOAT, " +
-                AVG_SPEED + " FLOAT)";
+                AVG_SPEED + " FLOAT, " +
+                TYPE + " TEXT)";
 
         Log.d(TAG, "onCreate: " + createUserTable);
         Log.d(TAG, "onCreate: " + createRunsTable);
@@ -64,10 +69,13 @@ public class RunDatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    //TODO
+    /**
+     * Gets all runs from the runs table
+     * @return A cursor object for all runs in the database
+     */
     public Cursor getRuns(){
-        Cursor c = null;
-        return c;
+        String getAllRuns = "SELECT * FROM " + RUNS_TABLE;
+        return getReadableDatabase().rawQuery(getAllRuns, null);
     }
 
     /**
@@ -125,9 +133,32 @@ public class RunDatabaseHelper extends SQLiteOpenHelper {
         getWritableDatabase().execSQL(updateString);
     }
 
-    //TODO
     public void addRun(Run run) {
+        String insertString = "INSERT INTO " + RUNS_TABLE + " VALUES(null, '" +
+                            run.getName() + "', " +
+                            run.getTotalTime() + ", " +
+                            run.getTotalDistance() + ", " +
+                            run.getAveragePace() + ", '" +
+                            run.getActivityType() + "')";
+        getWritableDatabase().execSQL(insertString);
+        addSingleRun(run);
+    }
 
+    private void addSingleRun(Run run) {
+        SQLiteDatabase db = getWritableDatabase();
+        String createString = "CREATE TABLE " + run.getName().replace(' ', '_') + "(" +
+                            _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                            LATITUDE + " DOUBLE, " +
+                            LONGITUDE + " DOUBLE)";
+        Log.d(TAG, "addSingleRun: " + createString);
+        db.execSQL(createString);
+        List<LatLng> runList = run.getRouteLatLng();
+        for (LatLng coordinates : runList) {
+            String insertString = "INSERT INTO " + run.getName().replace(' ', '_') + " VALUES(null, " +
+                                coordinates.latitude + ", " + coordinates.longitude + ")";
+            Log.d(TAG, "addSingleRun: " + insertString);
+            db.execSQL(insertString);
+        }
     }
 
     //TODO

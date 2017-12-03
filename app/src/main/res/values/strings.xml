@@ -15,6 +15,8 @@
     <string name="time_label">Time:</string>
     <string name="distance_label">Distance:</string>
     <string name="avg_speed">Avg Speed:</string>
+    <string name="distance_measure">miles</string>
+    <string name="speed_measure">mph</string>
     <string-array name="activity_types">
         <item>Runner</item>
         <item>Walker</item>

@@ -2,18 +2,21 @@ package com.example.allwalksoflife;
 
 import android.location.*;
 
+import com.google.android.gms.maps.model.LatLng;
+
+import java.util.List;
+
 /**
  * Created by shvow on 11/28/2017.
  */
 
 public class Run {
     //fields
-    int totalTime;
-    float totalDistance;
-    String activityType;
-    //List<LatLng> routeLatLng;
-    String name;
-    float averagePace;
+    private int totalTime;
+    private float totalDistance;
+    private String activityType;
+    private List<LatLng> routeLatLng;
+    private String name;
 
     //constructors
     //default
@@ -23,7 +26,6 @@ public class Run {
         activityType = "none";
         //routeLatLng = new List<LatLng>();
         name = "no name";
-        averagePace = 0;
     }
 
     //explicit
@@ -38,12 +40,11 @@ public class Run {
     }
     */
 
-    public Run(int totalTime, float totalDistance, String activityType, String name, float averagePace) {
+    public Run(int totalTime, float totalDistance, String activityType, String name) {
         this.totalTime = totalTime;
         this.totalDistance = totalDistance;
         this.activityType = activityType;
         this.name = name;
-        this.averagePace = averagePace;
     }
 
 
@@ -80,14 +81,9 @@ public class Run {
     }
 
     public float getAveragePace() {
-        return averagePace;
+        return totalDistance / (totalTime / 3600.0f);
     }
 
-    public void setAveragePace(float averagePace) {
-        this.averagePace = averagePace;
-    }
-
-    /*
     public List<LatLng> getRouteLatLng() {
         return routeLatLng;
     }
@@ -96,5 +92,4 @@ public class Run {
         this.routeLatLng = thisRoute;
     }
 
-     */
 }
