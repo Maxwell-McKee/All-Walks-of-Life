@@ -3,28 +3,27 @@ Mobile Apps Fall 2017 Final Project
 
 ## TO DO
 - Run class
-  - [ ] Name (String)
-  - [ ] Time (int)
-  - [ ] Distance (float)
-  - [ ] Average Speed (float)
-  - [ ] Activity Type (String)
+  - [x] Name (String)
+  - [x] Time (int)
+  - [x] Distance (float)
+  - [x] Average Speed (float)
+  - [x] Activity Type (String)
 - Main Activity
-  - [ ] Show all runs in chronological order
-    - Use `ArrayAdapter.insert(Run r, 0)` to add to top of the list
-  - [ ] Menu item to start a new run
-  - [ ] Menu item to see/edit profile
+  - [x] Show all runs in chronological order
+  - [x] Menu item to start a new run
+  - [x] Menu item to see/edit profile
 - User Info Activity
-  - [ ] Save changes
-  - [ ] Make information editable
-  - [ ] Add longest (time) run
+  - [x] Save changes
+  - [x] Make information editable
+  - [x] Add longest (time) run
 - Pre/Post Run activities
   - [ ] Split activity into 2
   - [ ] Wrap the current run
   - [ ] Link current run up to it
-- Database Helper(s)
+- [x] Database Helper(s)
 
 ## Stretch Goals
-- Save routes to view later
+- [x] Save routes to view later
 
 ## Image Sources
 Run: https://material.io/icons/#ic_directions_run  
