@@ -37,24 +37,12 @@ public class User {
         return fastestRun;
     }
 
-    public void setFastestRun(String fastestRun) {
-        this.fastestRun = fastestRun;
-    }
-
     public String getFurthestRun() {
         return furthestRun;
     }
 
-    public void setFurthestRun(String furthestRun) {
-        this.furthestRun = furthestRun;
-    }
-
     public String getLongestRun() {
         return longestRun;
-    }
-
-    public void setLongestRun(String longestRun) {
-        this.longestRun = longestRun;
     }
 
     public int getAge() {
@@ -66,8 +54,8 @@ public class User {
     }
 
     public User() {
-        this.username = "User";
-        this.location = "No Location";
+        this.username = "Username";
+        this.location = "No Known Location";
         this.type = "Runner";
         this.fastestRun = "";
         this.furthestRun = "";

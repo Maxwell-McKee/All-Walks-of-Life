@@ -1,16 +1,15 @@
 package com.example.allwalksoflife;
 
-import android.location.*;
-
 import com.google.android.gms.maps.model.LatLng;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by shvow on 11/28/2017.
  */
 
-public class Run {
+public class Run implements Serializable{
     //fields
     private int totalTime;
     private float totalDistance;
@@ -81,7 +80,11 @@ public class Run {
     }
 
     public float getAveragePace() {
-        return totalDistance / (totalTime / 3600.0f);
+        if (totalTime != 0) {
+            return totalDistance / (totalTime / 3600.0f);
+        } else {
+            return 0.0f;
+        }
     }
 
     public List<LatLng> getRouteLatLng() {

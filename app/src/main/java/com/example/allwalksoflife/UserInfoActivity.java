@@ -1,13 +1,19 @@
 package com.example.allwalksoflife;
 
+import android.content.Context;
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.CursorAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.ResourceCursorAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.lang.reflect.Array;
 
@@ -34,6 +40,11 @@ public class UserInfoActivity extends AppCompatActivity {
         activityArrayAdapter = ArrayAdapter.createFromResource(this, R.array.activity_types, R.layout.custom_spinner_item);
         activitySpinner.setAdapter(activityArrayAdapter);
         activitySpinner.setSelection(activityArrayAdapter.getPosition(currentUser.getType()));
+        ((EditText)findViewById(R.id.locationEditText)).setText(currentUser.getLocation());
+
+        ListView recordsListView = findViewById(R.id.recordsListView);
+        CursorAdapter recordsCursorAdapter = new RunsCursorAdapter(this, databaseHelper.getUserRecords());
+        recordsListView.setAdapter(recordsCursorAdapter);
     }
 
     @Override
@@ -49,6 +60,8 @@ public class UserInfoActivity extends AppCompatActivity {
             String ageText = ((EditText)findViewById(R.id.ageEditText)).getText().toString();
             currentUser.setAge(Integer.parseInt(ageText));
             currentUser.setType(((Spinner)findViewById(R.id.activitySpinner)).getSelectedItem().toString());
+            String locationText = ((EditText)findViewById(R.id.locationEditText)).getText().toString();
+            currentUser.setLocation(locationText);
             databaseHelper.updateUser(currentUser);
             finish();
         }

@@ -2,6 +2,7 @@ package com.example.allwalksoflife;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.database.MergeCursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -29,7 +30,7 @@ public class RunDatabaseHelper extends SQLiteOpenHelper {
     public static final String NAME = "name",                  // String
                                 TIME = "time",                  // int
                                 DISTANCE = "distance",          // double
-                                AVG_SPEED = "avdSpeed";         // double
+                                AVG_SPEED = "avgSpeed";         // double
 
     // Run table columns
     public static final String LATITUDE = "latitude",          // double
@@ -74,7 +75,8 @@ public class RunDatabaseHelper extends SQLiteOpenHelper {
      * @return A cursor object for all runs in the database
      */
     public Cursor getRuns(){
-        String getAllRuns = "SELECT * FROM " + RUNS_TABLE;
+        String getAllRuns = "SELECT * FROM " + RUNS_TABLE
+                            + " ORDER BY " + _ID + " DESC";
         return getReadableDatabase().rawQuery(getAllRuns, null);
     }
 
@@ -107,6 +109,21 @@ public class RunDatabaseHelper extends SQLiteOpenHelper {
                         furthestRun,
                         longestRun,
                         age);
+    }
+
+    public Cursor getUserRecords() {
+        Cursor[] cursors = new Cursor[3];
+        SQLiteDatabase db = getReadableDatabase();
+        String fastestQuery = "SELECT * FROM " + RUNS_TABLE +
+                                " ORDER BY " + AVG_SPEED + " DESC LIMIT 1";
+        String farthestQuery = "SELECT * FROM " + RUNS_TABLE +
+                                " ORDER BY " + DISTANCE + " DESC LIMIT 1";
+        String longestQuery = "SELECT * FROM " + RUNS_TABLE +
+                                " ORDER BY " + TIME + " DESC LIMIT 1";
+        cursors[0] = db.rawQuery(fastestQuery, null);
+        cursors[1] = db.rawQuery(farthestQuery, null);
+        cursors[2] = db.rawQuery(longestQuery, null);
+        return new MergeCursor(cursors);
     }
 
     //TODO
@@ -146,6 +163,15 @@ public class RunDatabaseHelper extends SQLiteOpenHelper {
 
     private void addSingleRun(Run run) {
         SQLiteDatabase db = getWritableDatabase();
+        String safeTableQuery = "SELECT DISTINCT tbl_name FROM sqlite_master " +
+                                "WHERE tbl_name = '" + run.getName().replace(' ', '_') + "'";
+        Log.d(TAG, "addSingleRun: " + safeTableQuery + db.rawQuery(safeTableQuery, null).getCount());
+        int i = 1;
+        while(db.rawQuery(safeTableQuery, null).getCount() != 0) { // See if table already exists
+            run.setName(run.getName() + '_' + i);
+            safeTableQuery = "SELECT DISTINCT tbl_name FROM sqlite_master " +
+                    "WHERE tbl_name = '" + run.getName().replace(' ', '_') + "'";
+        }
         String createString = "CREATE TABLE " + run.getName().replace(' ', '_') + "(" +
                             _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                             LATITUDE + " DOUBLE, " +
@@ -165,7 +191,6 @@ public class RunDatabaseHelper extends SQLiteOpenHelper {
     public void deleteRun(Run run) {
 
     }
-
 
     /**
      * Creates the default user using the default constructor

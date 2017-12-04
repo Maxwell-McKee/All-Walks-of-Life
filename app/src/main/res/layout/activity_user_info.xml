@@ -15,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_column="2"
-        android:layout_columnWeight="1"
+        android:layout_columnWeight="1."
         android:layout_gravity="fill_vertical"
         android:layout_row="0"
         android:layout_rowSpan="3"
@@ -27,12 +27,11 @@
         android:layout_height="wrap_content"
         android:layout_column="0"
         android:layout_columnSpan="2"
-        android:layout_columnWeight="1"
+        android:layout_columnWeight="2"
         android:layout_gravity="fill"
         android:layout_row="0"
-        android:text="Username"
-        android:maxLines="1"
         android:maxLength="10"
+        android:maxLines="1"
         android:scrollHorizontally="false"
         android:textColor="@android:color/black"
         android:textSize="24sp"
@@ -43,8 +42,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_column="0"
+        android:layout_columnWeight="0"
         android:layout_row="1"
-        android:text="Age:"
+        android:text="@string/age_label"
         android:textColor="@android:color/black"
         android:textSize="18sp" />
 
@@ -52,8 +52,9 @@
         android:id="@+id/ageEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_column="0"
-        android:layout_gravity="right"
+        android:layout_column="1"
+        android:layout_columnWeight="1"
+        android:layout_gravity="left"
         android:layout_row="1"
         android:inputType="number"
         android:text="20"
@@ -64,236 +65,44 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_column="0"
+        android:layout_columnSpan="2"
+        android:layout_columnWeight="2"
+        android:layout_gravity="fill_horizontal"
         android:layout_row="2"
         android:textSize="24sp" />
 
-    <TextView
-        android:id="@+id/fastestRunTitle"
-        android:layout_width="wrap_content"
+
+    <EditText
+        android:id="@+id/locationEditText"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_column="0"
+        android:layout_columnSpan="2"
+        android:layout_gravity="fill_horizontal|center"
         android:layout_row="3"
-        android:paddingTop="10dp"
-        android:text="@string/fastest_run"
-        android:textColor="@android:color/black"
-        android:textSize="20sp" />
+        android:gravity="left" />
 
     <TextView
-        android:id="@+id/fastestTimeLabel"
+        android:id="@+id/recordsLabel"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_column="0"
-        android:layout_columnWeight="1"
+        android:layout_columnSpan="3"
+        android:layout_columnWeight="3"
         android:layout_gravity="fill_horizontal"
         android:layout_row="4"
-        android:text="@string/time_label"
-        android:textSize="18sp" />
-
-    <TextView
-        android:id="@+id/fastestDistanceLabel"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_column="1"
-        android:layout_columnWeight="1"
-        android:layout_gravity="fill_horizontal"
-        android:layout_row="4"
-        android:text="@string/distance_label"
-        android:textSize="18sp" />
-
-    <TextView
-        android:id="@+id/fastestAvgSpeedLabel"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_column="2"
-        android:layout_columnWeight="1"
-        android:layout_gravity="fill_horizontal"
-        android:layout_row="4"
-        android:text="@string/avg_speed"
-        android:textSize="18sp" />
-
-    <TextView
-        android:id="@+id/fastestRunTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_column="0"
-        android:layout_gravity="fill_horizontal"
-        android:layout_row="5"
-        android:paddingTop="10dp"
-        android:text="0:00:00" />
-
-    <TextView
-        android:id="@+id/fastestRunDistance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_column="1"
-        android:layout_gravity="fill_horizontal"
-        android:layout_row="5"
-        android:paddingTop="10dp"
-        android:text="0 miles" />
-
-    <TextView
-        android:id="@+id/fastestAvgSpeed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_column="2"
-        android:layout_gravity="fill_horizontal"
-        android:layout_row="5"
-        android:paddingTop="10dp"
-        android:text="0 mph" />
-
-
-    <TextView
-        android:id="@+id/farthestRunTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_column="0"
-        android:layout_row="6"
-        android:paddingTop="10dp"
-        android:text="@string/farthest_run"
+        android:gravity="center_horizontal"
+        android:text="@string/records_label"
         android:textColor="@android:color/black"
-        android:textSize="20sp" />
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/farthestTimeLabel"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+    <ListView
+        android:id="@+id/recordsListView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_column="0"
-        android:layout_columnWeight="1"
-        android:layout_gravity="fill_horizontal"
-        android:layout_row="7"
-        android:text="@string/time_label"
-        android:textSize="18sp" />
-
-    <TextView
-        android:id="@+id/farthestDistanceLabel"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_column="1"
-        android:layout_columnWeight="1"
-        android:layout_gravity="fill_horizontal"
-        android:layout_row="7"
-        android:text="@string/distance_label"
-        android:textSize="18sp" />
-
-    <TextView
-        android:id="@+id/farthestAvgSpeedLabel"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_column="2"
-        android:layout_columnWeight="1"
-        android:layout_gravity="fill_horizontal"
-        android:layout_row="7"
-        android:text="@string/avg_speed"
-        android:textSize="18sp" />
-
-    <TextView
-        android:id="@+id/farthestRunTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_column="0"
-        android:layout_gravity="fill_vertical|fill_horizontal"
-        android:layout_row="8"
-        android:gravity="top"
-        android:paddingTop="10dp"
-        android:text="0:00:00" />
-
-    <TextView
-        android:id="@+id/farthestRunDistance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_column="1"
-        android:layout_gravity="fill_vertical|fill_horizontal"
-        android:layout_row="8"
-        android:gravity="top"
-        android:paddingTop="10dp"
-        android:text="0 miles" />
-
-    <TextView
-        android:id="@+id/farthestAvgSpeed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_column="2"
-        android:layout_gravity="fill_vertical|fill_horizontal"
-        android:layout_row="8"
-        android:gravity="top"
-        android:paddingTop="10dp"
-        android:text="0 mph" />
-
-    <TextView
-        android:id="@+id/longestRunTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_column="0"
-        android:layout_row="9"
-        android:paddingTop="10dp"
-        android:text="@string/longest_run"
-        android:textColor="@android:color/black"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/longestTimeLabel"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_column="0"
-        android:layout_columnWeight="1"
-        android:layout_gravity="fill_horizontal"
-        android:layout_row="10"
-        android:text="@string/time_label"
-        android:textSize="18sp" />
-
-    <TextView
-        android:id="@+id/longestDistanceLabel"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_column="1"
-        android:layout_columnWeight="1"
-        android:layout_gravity="fill_horizontal"
-        android:layout_row="10"
-        android:text="@string/distance_label"
-        android:textSize="18sp" />
-
-    <TextView
-        android:id="@+id/longestAvgSpeedLabel"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_column="2"
-        android:layout_columnWeight="1"
-        android:layout_gravity="fill_horizontal"
-        android:layout_row="10"
-        android:text="@string/avg_speed"
-        android:textSize="18sp" />
-
-    <TextView
-        android:id="@+id/longestRunTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_column="0"
-        android:layout_gravity="fill_vertical|fill_horizontal"
-        android:layout_row="11"
-        android:gravity="top"
-        android:paddingTop="10dp"
-        android:text="0:00:00" />
-
-    <TextView
-        android:id="@+id/longestRunDistance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_column="1"
-        android:layout_gravity="fill_vertical|fill_horizontal"
-        android:layout_row="11"
-        android:gravity="top"
-        android:paddingTop="10dp"
-        android:text="0 miles" />
-
-    <TextView
-        android:id="@+id/longestAvgSpeed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_column="2"
-        android:layout_gravity="fill_vertical|fill_horizontal"
-        android:layout_row="11"
-        android:gravity="top"
-        android:paddingTop="10dp"
-        android:text="0 mph" />
-
+        android:layout_columnSpan="3"
+        android:layout_row="5"
+        android:layout_rowWeight="1" />
 </GridLayout>

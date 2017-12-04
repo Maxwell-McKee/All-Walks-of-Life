@@ -3,6 +3,8 @@ package com.example.allwalksoflife;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.pm.PackageManager;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Color;
 import android.location.Location;
 import android.os.Handler;
@@ -39,6 +41,7 @@ public class CurrentRunActivity extends AppCompatActivity implements OnMapReadyC
     private boolean finishedRunning;
     private int REQUEST_PERMISSION = 1;
     private int secondsElapsed = 0;
+    private float distanceSum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +76,8 @@ public class CurrentRunActivity extends AppCompatActivity implements OnMapReadyC
                     ((Button)findViewById(R.id.startStopButton)).setText(getString(R.string.stop));
                 } else {
                     finishedRunning = true;
+                    saveRun();
+                    finish();
                     view.setEnabled(false);
                 }
                 mMap.addPolyline(currentRoute.width(5.0f).color(Color.BLUE));
@@ -98,10 +103,7 @@ public class CurrentRunActivity extends AppCompatActivity implements OnMapReadyC
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-        getLastLocation();
-        startLocationUpdates();
-        mMap.setMyLocationEnabled(true);
+        startRunLocation();
     }
 
     private void createLocationRequest() {
@@ -111,7 +113,7 @@ public class CurrentRunActivity extends AppCompatActivity implements OnMapReadyC
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
     }
 
-    private void getLastLocation() {
+    private void startRunLocation() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
@@ -121,7 +123,7 @@ public class CurrentRunActivity extends AppCompatActivity implements OnMapReadyC
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
             Log.d(TAG, "asking for permission");
-            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_PERMISSION);
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_PERMISSION);
         } else {
             mFusedLocationClient.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
                 @Override
@@ -136,12 +138,9 @@ public class CurrentRunActivity extends AppCompatActivity implements OnMapReadyC
                     }
                 }
             });
+            mFusedLocationClient.requestLocationUpdates(mLocationRequest, mLocationCallback, null);
+            mMap.setMyLocationEnabled(true);
         }
-    }
-
-    @SuppressLint("MissingPermission")
-    private void startLocationUpdates() {
-        mFusedLocationClient.requestLocationUpdates(mLocationRequest, mLocationCallback, null);
     }
 
     @Override
@@ -149,7 +148,9 @@ public class CurrentRunActivity extends AppCompatActivity implements OnMapReadyC
         if (requestCode == REQUEST_PERMISSION) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // Try again with new permission
-                getLastLocation();
+                startRunLocation();
+            } else if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_DENIED) {
+                finish();
             }
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -177,7 +178,7 @@ public class CurrentRunActivity extends AppCompatActivity implements OnMapReadyC
         distanceCalc.postDelayed(new Runnable() {
             @Override
             public void run() {
-                float distanceSum = 0.0f;
+                distanceSum = 0.0f;
                 float[] distance = new float[1];
                 LatLng latLng1 = currentRoute.getPoints().get(0);
                 if (currentRoute.getPoints().size() > 1) {
@@ -191,12 +192,21 @@ public class CurrentRunActivity extends AppCompatActivity implements OnMapReadyC
                                 distance
                         );
                         latLng1 = latLng2;
-                        distanceSum += distance[0];
+                        distanceSum += (distance[0] / 1609.34f); // Convert to miles
                     }
-                    ((TextView)findViewById(R.id.distance)).setText("" + distanceSum + " m");
+                    ((TextView)findViewById(R.id.distance)).setText(
+                            String.format("%.2f %s", distanceSum , getString(R.string.distance_measure)));
                 }
                 if (!finishedRunning) distanceCalc.postDelayed(this, 5000);
             }
         }, 5000);
+    }
+
+    private void saveRun() {
+        RunDatabaseHelper runDatabaseHelper = new RunDatabaseHelper(this);
+        Run currentRun = new Run(secondsElapsed, distanceSum, "Run", "Test Run");
+        currentRun.setRouteLatLng(currentRoute.getPoints());
+        runDatabaseHelper.addRun(currentRun);
+        runDatabaseHelper.close();
     }
 }

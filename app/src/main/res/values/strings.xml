@@ -1,13 +1,14 @@
 <resources>
     <string name="app_name">All Walks of Life</string>
     <string name="user_info_name">Profile</string>
+    <string name="age_label">Age:</string>
     <string name="title_activity_current_run">Current Run</string>
     <string name="start">Start</string>
     <string name="stop">Stop</string>
     <string name="time_elapsed">Time Elapsed</string>
     <string name="distance">Distance</string>
     <string name="base_time">0:00:00</string>
-    <string name="base_distance">0.0 m</string>
+    <string name="base_distance">0.00 miles</string>
     <string name="fastest_run">Fastest Run</string>
     <string name="furthest_run">Furthest Run</string>
     <string name="farthest_run">Farthest Run</string>
@@ -17,6 +18,7 @@
     <string name="avg_speed">Avg Speed:</string>
     <string name="distance_measure">miles</string>
     <string name="speed_measure">mph</string>
+    <string name="records_label">My Records</string>
     <string-array name="activity_types">
         <item>Runner</item>
         <item>Walker</item>

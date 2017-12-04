@@ -43,7 +43,8 @@
 
         <activity
             android:name=".CurrentRunActivity"
-            android:label="@string/title_activity_current_run">
+            android:label="@string/title_activity_current_run"
+            android:screenOrientation="portrait">
 
         </activity>
     </application>
