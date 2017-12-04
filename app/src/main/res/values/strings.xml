@@ -2,6 +2,8 @@
     <string name="app_name">All Walks of Life</string>
     <string name="user_info_name">Profile</string>
     <string name="age_label">Age:</string>
+    <string name="welcome_name">Select a Type of Activiy</string>
+    <string name="result_name">Review Your Activity</string>
     <string name="title_activity_current_run">Current Run</string>
     <string name="start">Start</string>
     <string name="stop">Stop</string>

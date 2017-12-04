@@ -29,6 +29,29 @@
             android:parentActivityName=".MainActivity">
 
         </activity>
+        <activity
+            android:name=".WelcomeActivity"
+            android:label="@string/welcome_name"
+            android:parentActivityName=".MainActivity">
+
+            <intent-filter>
+
+            </intent-filter>
+
+        </activity>
+
+        <activity
+            android:name=".ResultActivity"
+            android:label="@string/result_name"
+            android:parentActivityName=".MainActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

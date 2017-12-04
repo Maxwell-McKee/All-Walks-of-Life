@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:columnCount="3">
+
+    <ImageView
+        android:id="@+id/runIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_column="0"
+        android:layout_columnSpan="1"
+        android:layout_gravity="fill_horizontal"
+        android:clickable="false"
+        android:src="@drawable/runner_blue" />
+
+    <ImageView
+        android:id="@+id/walkIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_column="1"
+        android:layout_columnSpan="1"
+        android:layout_gravity="fill_horizontal"
+        android:clickable="false"
+        android:src="@drawable/walker_purple" />
+
+    <ImageView
+        android:id="@+id/bikeIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_column="2"
+        android:layout_columnSpan="1"
+        android:layout_gravity="fill_horizontal"
+        android:clickable="false"
+        android:src="@drawable/biker_green" />
+
+    <RadioGroup
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_columnSpan="3"
+        android:layout_gravity="fill_horizontal"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <RadioButton
+            android:id="@+id/runRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnSpan="1"
+
+            android:layout_gravity="fill_horizontal"
+            android:padding="20dp"
+            android:text="Run"
+            android:textSize="25sp" />
+
+        <RadioButton
+            android:id="@+id/walkRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnSpan="1"
+
+            android:layout_gravity="fill_horizontal"
+            android:padding="20dp"
+            android:text="Walk"
+            android:textSize="25sp" />
+
+        <RadioButton
+            android:id="@+id/bikeRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnSpan="1"
+
+            android:layout_gravity="fill_horizontal"
+            android:padding="20dp"
+            android:text="Bike"
+            android:textSize="25sp" />
+
+    </RadioGroup>
+
+
+    <Button
+        android:id="@+id/startButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_columnSpan="3"
+        android:layout_columnWeight="1"
+        android:layout_gravity="bottom"
+        android:layout_margin="10dp"
+        android:background="@android:color/holo_orange_light"
+        android:onClick="startClicked"
+        android:text="Start"
+        android:textColor="@android:color/black"
+        android:textSize="35sp" />
+
+</GridLayout>
