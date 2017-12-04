@@ -41,9 +41,9 @@ public class WelcomeActivity extends AppCompatActivity {
         if(isClicked ){
             Intent intent = new Intent(WelcomeActivity.this, CurrentRunActivity.class);
 
-            RadioButton walkButton = (RadioButton) findViewById(R.id.walkRadioButton);
-            RadioButton runButton = (RadioButton) findViewById(R.id.runRadioButton);
-            RadioButton bikeButton = (RadioButton) findViewById(R.id.bikeRadioButton);
+            RadioButton walkButton = findViewById(R.id.walkRadioButton);
+            RadioButton runButton = findViewById(R.id.runRadioButton);
+            RadioButton bikeButton = findViewById(R.id.bikeRadioButton);
 
             //if walk selected, send through string of run
             if(walkButton.isChecked() == true){
@@ -67,16 +67,11 @@ public class WelcomeActivity extends AppCompatActivity {
     }
 
     public boolean isOneSelected(){
-        RadioButton walkButton = (RadioButton) findViewById(R.id.walkRadioButton);
-        RadioButton runButton = (RadioButton) findViewById(R.id.runRadioButton);
-        RadioButton bikeButton = (RadioButton) findViewById(R.id.bikeRadioButton);
-        if((walkButton.isChecked() == true) || (runButton.isChecked() == true)
-                || (bikeButton.isChecked() == true)){
-            return true;
-        }
-        else{
-            return false;
-        }
+        RadioButton walkButton = findViewById(R.id.walkRadioButton);
+        RadioButton runButton = findViewById(R.id.runRadioButton);
+        RadioButton bikeButton = findViewById(R.id.bikeRadioButton);
+        return (walkButton.isChecked() == true) || (runButton.isChecked() == true)
+                || (bikeButton.isChecked() == true);
     }
 
 }

@@ -38,7 +38,7 @@ public class ResultActivity  extends AppCompatActivity {
             //display toast showing the username and pin
             Toast.makeText(this, "activityType: " + activityType, Toast.LENGTH_SHORT).show();
         }
-        activityTypeImageView = (ImageView) findViewById(R.id.activityTypeImageView);
+        activityTypeImageView = findViewById(R.id.activityTypeImageView);
 
         if(activityType.equals("run")){
             //set the image
@@ -73,7 +73,7 @@ public class ResultActivity  extends AppCompatActivity {
         switch(menuId){
             case R.id.result_save:
                 //check to see if the user entered a name for the activity
-                EditText editText = (EditText) findViewById(R.id.activityNameEditText);
+                EditText editText = findViewById(R.id.activityNameEditText);
                 String text = editText.getText().toString();
                 if(!text.equals("")){
                     //save item here
