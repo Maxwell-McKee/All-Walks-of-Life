@@ -1,5 +1,8 @@
 package com.example.allwalksoflife;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.android.gms.maps.model.LatLng;
 
 import java.io.Serializable;
@@ -9,7 +12,7 @@ import java.util.List;
  * Created by shvow on 11/28/2017.
  */
 
-public class Run implements Serializable{
+public class Run implements Parcelable{
     //fields
     private int totalTime;
     private float totalDistance;
@@ -46,6 +49,40 @@ public class Run implements Serializable{
         this.name = name;
     }
 
+
+    protected Run(Parcel in) {
+        totalTime = in.readInt();
+        totalDistance = in.readFloat();
+        activityType = in.readString();
+        routeLatLng = in.createTypedArrayList(LatLng.CREATOR);
+        name = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(totalTime);
+        dest.writeFloat(totalDistance);
+        dest.writeString(activityType);
+        dest.writeTypedList(routeLatLng);
+        dest.writeString(name);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Run> CREATOR = new Creator<Run>() {
+        @Override
+        public Run createFromParcel(Parcel in) {
+            return new Run(in);
+        }
+
+        @Override
+        public Run[] newArray(int size) {
+            return new Run[size];
+        }
+    };
 
     public int getTotalTime() {
         return totalTime;

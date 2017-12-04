@@ -19,7 +19,7 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
-    getActionBar().setDisplayHomeAsUpEnabled(true);
+    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -46,17 +46,21 @@ public class WelcomeActivity extends AppCompatActivity {
             RadioButton bikeButton = findViewById(R.id.bikeRadioButton);
 
             //if walk selected, send through string of run
-            if(walkButton.isChecked() == true){
-                intent.putExtra("activityType", "walk");
+            if(walkButton.isChecked()){
+                intent.putExtra("activityType", "Walk");
 
             }
             //if run selected, send through string of run
-            else if(runButton.isChecked() == true){
-                intent.putExtra("activityType", "run");
+            else if(runButton.isChecked()){
+                intent.putExtra("activityType", "Run");
+            }
+
+            else if(bikeButton.isChecked()) {
+                intent.putExtra("activityType", "Bike");
             }
             //if bike selected, send through string of run
             else{
-                intent.putExtra("activityType", "bike");
+                intent.putExtra("activityType", "Run");
             }
 
             startActivity(intent);

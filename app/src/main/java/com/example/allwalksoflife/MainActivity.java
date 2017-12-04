@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.runMenuItem) {
-            Intent runIntent = new Intent(this, CurrentRunActivity.class);
+            Intent runIntent = new Intent(this, WelcomeActivity.class);
             startActivity(runIntent);
             return true;
         } else if (item.getItemId() == R.id.profileMenuItem) {

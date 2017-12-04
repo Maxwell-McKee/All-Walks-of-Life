@@ -20,8 +20,7 @@ import android.widget.Toast;
 
 public class ResultActivity  extends AppCompatActivity {
     //fields
-    String activityType;
-    int secondsElapsed;
+    private Run finishedRun;
 
     ImageView activityTypeImageView;
 
@@ -32,32 +31,37 @@ public class ResultActivity  extends AppCompatActivity {
         Intent intent  = getIntent();
         if(intent != null){
             //get extra information out
-            activityType = intent.getStringExtra("activityType");
-            secondsElapsed = intent.getIntExtra("secondsElapsed",0);
+            finishedRun = intent.getParcelableExtra(CurrentRunActivity.RUN_KEY);
+
 
             //display toast showing the username and pin
-            Toast.makeText(this, "activityType: " + activityType, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "activityType: " + finishedRun.getActivityType(), Toast.LENGTH_SHORT).show();
         }
         activityTypeImageView = findViewById(R.id.activityTypeImageView);
 
-        if(activityType.equals("run")){
-            //set the image
-            activityTypeImageView.setImageResource(R.drawable.runner_blue);
-        }
-        else if(activityType.equals("walk")){
-            //set the image
-            activityTypeImageView.setImageResource(R.drawable.walker_purple);
-        }
-        else{
-            //set the image
-            activityTypeImageView.setImageResource(R.drawable.biker_green);
-        }
+        switch (finishedRun.getActivityType()) {
+            case "Run":
+                //set the image
+                activityTypeImageView.setImageResource(R.drawable.runner_blue);
+                break;
+            case "Walk":
+                //set the image
+                activityTypeImageView.setImageResource(R.drawable.walker_purple);
+                break;
+            case "Bike":
+                //set the image
+                activityTypeImageView.setImageResource(R.drawable.biker_green);
+                break;
+            default:
+                // Invalid case. Abort
+                finish();
+            }
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         //get the menuinflater to inflate our menu
         MenuInflater menuinflater = getMenuInflater();
-        menuinflater.inflate(R.menu.main_menu, menu);
+        menuinflater.inflate(R.menu.result_menu, menu);
 
         return super.onCreateOptionsMenu(menu);
     }
@@ -76,7 +80,8 @@ public class ResultActivity  extends AppCompatActivity {
                 EditText editText = findViewById(R.id.activityNameEditText);
                 String text = editText.getText().toString();
                 if(!text.equals("")){
-                    //save item here
+                    saveRun(text);
+                    finish();
                 }
 
             case R.id.result_discard:
@@ -97,6 +102,13 @@ public class ResultActivity  extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void saveRun(String runName) {
+        RunDatabaseHelper runDatabaseHelper = new RunDatabaseHelper(this);
+        finishedRun.setName(runName);
+        runDatabaseHelper.addRun(finishedRun);
+        runDatabaseHelper.close();
     }
 
 

@@ -44,8 +44,9 @@ public class CurrentRunActivity extends AppCompatActivity implements OnMapReadyC
     private int REQUEST_PERMISSION = 1;
     private int secondsElapsed = 0;
     private float distanceSum;
-
     private String activityType;
+
+    public static final String RUN_KEY = "finishedRun";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,15 +93,17 @@ public class CurrentRunActivity extends AppCompatActivity implements OnMapReadyC
                     ((Button)findViewById(R.id.startStopButton)).setText(getString(R.string.stop));
                 } else {
                     finishedRunning = true;
-                    saveRun();
-                    finish();
                     view.setEnabled(false);
 
                     //go to result activity
                     Intent intent = new Intent(CurrentRunActivity.this, ResultActivity.class);
+                    Run finishedRun = new Run();
+                    finishedRun.setActivityType(activityType);
+                    finishedRun.setTotalTime(secondsElapsed);
+                    finishedRun.setTotalDistance(distanceSum);
+                    finishedRun.setRouteLatLng(currentRoute.getPoints());
 
-                    intent.putExtra("activityType", activityType);
-                    intent.putExtra("secondsElapsed", secondsElapsed);
+                    intent.putExtra(RUN_KEY, finishedRun);
 
                     startActivity(intent);
                 }
@@ -226,11 +229,4 @@ public class CurrentRunActivity extends AppCompatActivity implements OnMapReadyC
         }, 5000);
     }
 
-    private void saveRun() {
-        RunDatabaseHelper runDatabaseHelper = new RunDatabaseHelper(this);
-        Run currentRun = new Run(secondsElapsed, distanceSum, "Run", "Test Run");
-        currentRun.setRouteLatLng(currentRoute.getPoints());
-        runDatabaseHelper.addRun(currentRun);
-        runDatabaseHelper.close();
-    }
 }
