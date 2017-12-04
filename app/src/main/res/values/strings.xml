@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">All Walks of Life</string>
     <string name="user_info_name">Profile</string>
+    <string name="welcome_name">Select a Type of Activiy</string>
+    <string name="result_name">Review Your Activity</string>
     <string name="title_activity_current_run">Current Run</string>
     <string name="start">Start</string>
     <string name="stop">Stop</string>
@@ -22,4 +24,5 @@
         <item>Walker</item>
         <item>Biker</item>
     </string-array>
+
 </resources>

@@ -2,6 +2,7 @@ package com.example.allwalksoflife;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
@@ -14,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -40,10 +42,24 @@ public class CurrentRunActivity extends AppCompatActivity implements OnMapReadyC
     private int REQUEST_PERMISSION = 1;
     private int secondsElapsed = 0;
 
+    private String activityType;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_current_run);
+
+        //get intent from welcome activity
+        Intent intent = getIntent();
+        if(intent != null){
+            //get extra information out
+            activityType = intent.getStringExtra("activityType");
+
+            //display toast showing the username and pin
+            Toast.makeText(this, "activityType: " + activityType, Toast.LENGTH_SHORT).show();
+        }
+
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         currentRoute = new PolylineOptions();
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
@@ -74,6 +90,14 @@ public class CurrentRunActivity extends AppCompatActivity implements OnMapReadyC
                 } else {
                     finishedRunning = true;
                     view.setEnabled(false);
+
+                    //go to result activity
+                    Intent intent = new Intent(CurrentRunActivity.this, ResultActivity.class);
+
+                    intent.putExtra("activityType", activityType);
+                    intent.putExtra("secondsElapsed", secondsElapsed);
+
+                    startActivity(intent);
                 }
                 mMap.addPolyline(currentRoute.width(5.0f).color(Color.BLUE));
             }
