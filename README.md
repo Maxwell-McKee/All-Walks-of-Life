@@ -17,13 +17,14 @@ Mobile Apps Fall 2017 Final Project
   - [x] Make information editable
   - [x] Add longest (time) run
 - Pre/Post Run activities
-  - [ ] Split activity into 2
+  - [x] Split activity into 2
   - [ ] Wrap the current run
   - [ ] Link current run up to it
 - [x] Database Helper(s)
 
 ## Stretch Goals
 - [x] Save routes to view later
+- [ ] Change timer to a chronometer
 
 ## Image Sources
 Run: https://material.io/icons/#ic_directions_run  
