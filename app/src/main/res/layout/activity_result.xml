@@ -1,33 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:columnCount="3">
+    android:columnCount="2"
+    android:paddingTop="10dp"
+    android:rowCount="5">
 
     <ImageView
         android:id="@+id/activityTypeImageView"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_column="0"
-        android:layout_columnSpan="3"
+        android:layout_columnSpan="2"
         android:layout_columnWeight="3"
         android:layout_gravity="fill_horizontal"
-        android:layout_row="0"
-    />
+        android:layout_row="0" />
 
     <TextView
         android:id="@+id/totalTimeText"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_column="0"
         android:layout_columnSpan="1"
-        android:layout_columnWeight="3"
+        android:layout_columnWeight="1.5"
         android:layout_gravity="fill_horizontal"
         android:layout_row="1"
         android:paddingBottom="10dp"
         android:paddingLeft="10dp"
         android:paddingTop="10dp"
-        android:text="Total Time Elapsed (minutes): "
+        android:text="@string/time_result_label"
         android:textColor="@android:color/black"
         android:textSize="17sp" />
 
@@ -37,61 +39,54 @@
         android:layout_height="wrap_content"
         android:layout_column="1"
         android:layout_columnSpan="1"
-        android:layout_columnWeight="2"
-        android:layout_gravity="fill_horizontal"
+        android:layout_columnWeight="1"
+        android:layout_gravity="fill_vertical|fill_horizontal"
         android:layout_row="1"
-        android:gravity="center"
-        android:paddingBottom="10dp"
-        android:paddingTop="10dp"
-        android:text="0:00"
+        android:gravity="left|center"
         android:textColor="@android:color/black"
         android:textSize="17sp" />
 
     <TextView
         android:id="@+id/totalMilesText"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_column="0"
-        android:layout_columnSpan="1"
-        android:layout_columnWeight="3"
+        android:layout_columnWeight="1.5"
         android:layout_gravity="fill_horizontal"
         android:layout_row="2"
+        android:layout_rowSpan="1"
         android:paddingBottom="10dp"
         android:paddingLeft="10dp"
         android:paddingTop="10dp"
-        android:text="Total Miles: "
+        android:text="@string/distance_result_label"
         android:textColor="@android:color/black"
         android:textSize="17sp" />
 
     <TextView
-        android:id="@+id/totalMilesAmount"
+        android:id="@+id/totalDistanceAmount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_column="1"
-        android:layout_columnSpan="1"
-        android:layout_columnWeight="2"
-        android:layout_gravity="fill_horizontal"
+        android:layout_columnWeight="1"
+        android:layout_gravity="fill_vertical|fill_horizontal"
         android:layout_row="2"
-        android:gravity="center"
-        android:paddingBottom="10dp"
-        android:paddingTop="10dp"
-        android:text="0.00"
+        android:gravity="left|center"
         android:textColor="@android:color/black"
         android:textSize="17sp" />
 
     <TextView
         android:id="@+id/totalPaceText"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_column="0"
-        android:layout_columnSpan="1"
-        android:layout_columnWeight="3"
-        android:layout_row="3"
+        android:layout_columnWeight="1.5"
         android:layout_gravity="fill_horizontal"
+        android:layout_row="3"
+        android:layout_rowSpan="1"
         android:paddingBottom="10dp"
         android:paddingLeft="10dp"
         android:paddingTop="10dp"
-        android:text="Total Pace (miles/hour): "
+        android:text="@string/speed_result_label"
         android:textColor="@android:color/black"
         android:textSize="17sp" />
 
@@ -100,43 +95,38 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_column="1"
-        android:layout_columnSpan="1"
-        android:layout_columnWeight="2"
-        android:layout_gravity="fill_horizontal"
+        android:layout_columnWeight="1"
+        android:layout_gravity="fill_vertical|fill_horizontal"
         android:layout_row="3"
-        android:gravity="center"
-        android:paddingBottom="10dp"
-        android:paddingTop="10dp"
-        android:text="0.00"
+        android:gravity="left|center"
         android:textColor="@android:color/black"
         android:textSize="17sp" />
 
     <TextView
         android:id="@+id/NameText"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_column="0"
-        android:layout_columnSpan="1"
-        android:layout_columnWeight="3"
+        android:layout_columnWeight="1.5"
         android:layout_gravity="fill_horizontal"
         android:layout_row="4"
         android:paddingBottom="10dp"
         android:paddingLeft="10dp"
         android:paddingTop="10dp"
-        android:text="Name your activity: "
+        android:text="@string/name_result_label"
         android:textColor="@android:color/black"
         android:textSize="17sp" />
 
     <EditText
         android:id="@+id/activityNameEditText"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_column="1"
-        android:layout_columnSpan="1"
-        android:layout_columnWeight="2"
+        android:layout_columnWeight="1"
         android:layout_gravity="fill_horizontal"
         android:layout_row="4"
         android:hint="Enter Name Here"
-        android:paddingBottom="10dp"
-        android:paddingTop="10dp" />
+        android:nestedScrollingEnabled="true"
+        android:singleLine="true" />
+
 </GridLayout>

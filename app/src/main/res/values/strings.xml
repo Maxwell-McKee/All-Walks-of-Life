@@ -21,6 +21,10 @@
     <string name="distance_measure">miles</string>
     <string name="speed_measure">mph</string>
     <string name="records_label">My Records</string>
+    <string name="time_result_label">Total Time:</string>
+    <string name="distance_result_label">Distance Traveled:</string>
+    <string name="speed_result_label">Average Pace:</string>
+    <string name="name_result_label">Run name:</string>
     <string-array name="activity_types">
         <item>Runner</item>
         <item>Walker</item>

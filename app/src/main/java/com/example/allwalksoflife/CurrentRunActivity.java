@@ -105,6 +105,7 @@ public class CurrentRunActivity extends AppCompatActivity implements OnMapReadyC
 
                     intent.putExtra(RUN_KEY, finishedRun);
 
+                    mFusedLocationClient.removeLocationUpdates(mLocationCallback);
                     startActivity(intent);
                 }
                 mMap.addPolyline(currentRoute.width(5.0f).color(Color.BLUE));

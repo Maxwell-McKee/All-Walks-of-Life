@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -29,14 +30,19 @@ public class ResultActivity  extends AppCompatActivity {
         setContentView(R.layout.activity_result);
 
         Intent intent  = getIntent();
-        if(intent != null){
-            //get extra information out
-            finishedRun = intent.getParcelableExtra(CurrentRunActivity.RUN_KEY);
+        if(intent == null) finish(); // Should not enter this activity if it was not started
+        //get extra information out
+        finishedRun = intent.getParcelableExtra(CurrentRunActivity.RUN_KEY);
+        int time = finishedRun.getTotalTime();
+        String timeAmount = String.format("%d:%02d:%02d", time/3600, (time/60)%60, time%60);
+        String distanceAmount = String.format("%.2f %s", finishedRun.getTotalDistance(), getString(R.string.distance_measure));
+        String paceAmount = String.format("%.2f %s", finishedRun.getAveragePace(), getString(R.string.speed_measure));
+        ((TextView)findViewById(R.id.totalTimeAmount)).setText(timeAmount);
+        ((TextView)findViewById(R.id.totalDistanceAmount)).setText(distanceAmount);
+        ((TextView)findViewById(R.id.totalPaceAmount)).setText(paceAmount);
 
-
-            //display toast showing the username and pin
-            Toast.makeText(this, "activityType: " + finishedRun.getActivityType(), Toast.LENGTH_SHORT).show();
-        }
+        //display toast showing the username and pin
+        Toast.makeText(this, "activityType: " + finishedRun.getActivityType(), Toast.LENGTH_SHORT).show();
         activityTypeImageView = findViewById(R.id.activityTypeImageView);
 
         switch (finishedRun.getActivityType()) {
