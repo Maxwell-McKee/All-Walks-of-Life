@@ -9,6 +9,7 @@ import android.util.Log;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RunDatabaseHelper extends SQLiteOpenHelper {
@@ -35,6 +36,8 @@ public class RunDatabaseHelper extends SQLiteOpenHelper {
     // Run table columns
     public static final String LATITUDE = "latitude",          // double
                                 LONGITUDE = "longitude";        // double
+
+    private boolean foundRun = false;
 
     public RunDatabaseHelper(Context context) {
         super(context, DATABASE_NAME , null, DATABASE_VERSION);
@@ -126,11 +129,12 @@ public class RunDatabaseHelper extends SQLiteOpenHelper {
         return new MergeCursor(cursors);
     }
 
-    //TODO
-    public Cursor getSingleRun(String runName) {
-        Cursor c = null;
-        return c;
-    }
+    /*
+    public List<LatLng> getSingleRunRoute(String runName) {
+        List<LatLng> route = new ArrayList<LatLng>();
+        Cursor
+    }*/
+
 
     /**
      * Updates the user in the database
@@ -151,28 +155,40 @@ public class RunDatabaseHelper extends SQLiteOpenHelper {
     }
 
     public void addRun(Run run) {
+        SQLiteDatabase db = getWritableDatabase();
+        run.setName(run.getName().replace("'", "''")); // Sanitize input
+        addSingleRun(run);
+        if (foundRun) { // Duplicate name found, name changed on save
+            StringBuilder newName = new StringBuilder(run.getName());
+            newName.setCharAt(run.getName().lastIndexOf('_'), '(');
+            newName.append(')');
+            run.setName(newName.toString().replace('_', ' '));
+            foundRun = false;
+        }
         String insertString = "INSERT INTO " + RUNS_TABLE + " VALUES(null, '" +
                             run.getName() + "', " +
                             run.getTotalTime() + ", " +
                             run.getTotalDistance() + ", " +
                             run.getAveragePace() + ", '" +
                             run.getActivityType() + "')";
-        getWritableDatabase().execSQL(insertString);
-        addSingleRun(run);
+        db.execSQL(insertString);
     }
 
     private void addSingleRun(Run run) {
         SQLiteDatabase db = getWritableDatabase();
+        String originalName = run.getName().replace(' ', '_').replace("''", "");
         String safeTableQuery = "SELECT DISTINCT tbl_name FROM sqlite_master " +
-                                "WHERE tbl_name = '" + run.getName().replace(' ', '_') + "'";
+                                "WHERE tbl_name = '" + originalName + "'";
         Log.d(TAG, "addSingleRun: " + safeTableQuery + db.rawQuery(safeTableQuery, null).getCount());
         int i = 1;
         while(db.rawQuery(safeTableQuery, null).getCount() != 0) { // See if table already exists
-            run.setName(run.getName() + '_' + i);
+            foundRun = true;
+            run.setName(originalName +  '_' + i);
             safeTableQuery = "SELECT DISTINCT tbl_name FROM sqlite_master " +
-                    "WHERE tbl_name = '" + run.getName().replace(' ', '_') + "'";
+                    "WHERE tbl_name = '" + run.getName().replace(' ', '_').replace("''", "") + "'";
         }
-        String createString = "CREATE TABLE " + run.getName().replace(' ', '_') + "(" +
+        String runTableName = run.getName().replace(' ', '_').replace("''", "");
+        String createString = "CREATE TABLE " + runTableName + "(" +
                             _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                             LATITUDE + " DOUBLE, " +
                             LONGITUDE + " DOUBLE)";
@@ -180,8 +196,8 @@ public class RunDatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(createString);
         List<LatLng> runList = run.getRouteLatLng();
         for (LatLng coordinates : runList) {
-            String insertString = "INSERT INTO " + run.getName().replace(' ', '_') + " VALUES(null, " +
-                                coordinates.latitude + ", " + coordinates.longitude + ")";
+            String insertString = "INSERT INTO " + runTableName + " VALUES(null, " +
+                    coordinates.latitude + ", " + coordinates.longitude + ")";
             Log.d(TAG, "addSingleRun: " + insertString);
             db.execSQL(insertString);
         }

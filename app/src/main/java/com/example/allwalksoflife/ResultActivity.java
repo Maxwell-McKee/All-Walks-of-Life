@@ -89,25 +89,36 @@ public class ResultActivity  extends AppCompatActivity {
                     saveRun(text);
                     finish();
                 }
+                return true;
 
+            case android.R.id.home:
             case R.id.result_discard:
-                //ask users if they want to leave
-                AlertDialog.Builder alertDialog = new AlertDialog.Builder(ResultActivity.this);
-
-                alertDialog.setTitle("My First Alert Dialog")
-                        .setMessage("Would you like to discard this Activity?")
-                        .setPositiveButton("Positive", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialoginterface, int i) {
-                                //go back to mainActivity
-                                Intent intent = new Intent(ResultActivity.this, MainActivity.class);
-                                startActivity(intent);
-                            }
-                        })
-                        .setNegativeButton("Negative", null);
-                alertDialog.show();
+                alertDiscard();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        alertDiscard();
+    }
+
+    private void alertDiscard() {
+        //ask users if they want to leave
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(ResultActivity.this);
+
+        alertDialog.setTitle(getString(R.string.discard))
+                .setMessage(getString(R.string.discard_message, finishedRun.getActivityType()))
+                .setPositiveButton(getString(R.string.discard), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialoginterface, int i) {
+                        //go back to mainActivity
+                        finish();
+                    }
+                })
+                .setNegativeButton(getString(R.string.cancel), null);
+        alertDialog.show();
     }
 
     private void saveRun(String runName) {

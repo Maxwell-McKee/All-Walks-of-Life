@@ -27,7 +27,7 @@ public class RunsCursorAdapter extends ResourceCursorAdapter {
         float speedFloat = cursor.getFloat(4);
 
         // Convert numerical values
-        String title = cursor.getString(1);
+        String title = cursor.getString(1).replace("''", "'");
         String time = String.format("%d:%02d:%02d", timeInt/3600, (timeInt/60)%60, timeInt%60);
         String distance = String.format("%.2f %s", distanceFloat, context.getString(R.string.distance_measure));
         String speed = String.format("%.2f %s", speedFloat, context.getString(R.string.speed_measure));

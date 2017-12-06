@@ -65,6 +65,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
             startActivity(intent);
             Toast.makeText(this, "Go to the run activity.", Toast.LENGTH_SHORT).show();
+            finish();
         }else{
             Toast.makeText(this, "Please select an activity.", Toast.LENGTH_SHORT).show();
         }

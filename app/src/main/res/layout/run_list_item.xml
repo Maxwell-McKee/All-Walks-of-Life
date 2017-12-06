@@ -10,6 +10,7 @@
         android:id="@+id/runTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_columnSpan="2"
         android:layout_gravity="fill_horizontal"
         android:textColor="@android:color/black"
         android:textSize="24sp"

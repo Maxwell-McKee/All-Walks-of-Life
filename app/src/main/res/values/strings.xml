@@ -25,6 +25,9 @@
     <string name="distance_result_label">Distance Traveled:</string>
     <string name="speed_result_label">Average Pace:</string>
     <string name="name_result_label">Run name:</string>
+    <string name="discard">Discard</string>
+    <string name="cancel">Cancel</string>
+    <string name="discard_message">Are you sure you would you like to discard this %s?</string>
     <string-array name="activity_types">
         <item>Runner</item>
         <item>Walker</item>
