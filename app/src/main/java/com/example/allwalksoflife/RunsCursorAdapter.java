@@ -3,8 +3,11 @@ package com.example.allwalksoflife;
 import android.content.Context;
 import android.database.Cursor;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ResourceCursorAdapter;
 import android.widget.TextView;
+
+import com.google.android.gms.maps.model.LatLng;
 
 public class RunsCursorAdapter extends ResourceCursorAdapter {
 

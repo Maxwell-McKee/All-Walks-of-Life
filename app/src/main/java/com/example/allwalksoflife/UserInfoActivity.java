@@ -1,24 +1,25 @@
 package com.example.allwalksoflife;
 
-import android.content.Context;
-import android.database.Cursor;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CursorAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.ResourceCursorAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import java.lang.reflect.Array;
+import com.google.android.gms.maps.model.LatLng;
+
+import java.util.ArrayList;
 
 public class UserInfoActivity extends AppCompatActivity {
-    private RunDatabaseHelper databaseHelper;
+    private RunDatabaseHelper runDatabaseHelper;
     private ArrayAdapter<CharSequence> activityArrayAdapter;
     private User currentUser;
 
@@ -27,8 +28,8 @@ public class UserInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_info);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        databaseHelper = new RunDatabaseHelper(this);
-        currentUser = databaseHelper.getUser();
+        runDatabaseHelper = new RunDatabaseHelper(this);
+        currentUser = runDatabaseHelper.getUser();
         ((EditText)findViewById(R.id.usernameEditText)).setText(currentUser.getUsername());
         EditText ageText = findViewById(R.id.ageEditText);
         if (currentUser.getAge() <= 0) {
@@ -43,8 +44,20 @@ public class UserInfoActivity extends AppCompatActivity {
         ((EditText)findViewById(R.id.locationEditText)).setText(currentUser.getLocation());
 
         ListView recordsListView = findViewById(R.id.recordsListView);
-        CursorAdapter recordsCursorAdapter = new RunsCursorAdapter(this, databaseHelper.getUserRecords());
+        CursorAdapter recordsCursorAdapter = new RunsCursorAdapter(this, runDatabaseHelper.getUserRecords());
         recordsListView.setAdapter(recordsCursorAdapter);
+        recordsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String title = ((TextView)view.findViewById(R.id.runTitle)).getText().toString();
+                String type = ((TextView)view.findViewById(R.id.activityType)).getText().toString();
+                ArrayList<LatLng> ghostRoute = runDatabaseHelper.getSingleRunRoute(title);
+                Intent ghostRun = new Intent(UserInfoActivity.this, CurrentRunActivity.class);
+                ghostRun.putParcelableArrayListExtra(CurrentRunActivity.GHOST_KEY, ghostRoute);
+                ghostRun.putExtra("activityType", type);
+                startActivity(ghostRun);
+            }
+        });
     }
 
     @Override
@@ -62,7 +75,7 @@ public class UserInfoActivity extends AppCompatActivity {
             currentUser.setType(((Spinner)findViewById(R.id.activitySpinner)).getSelectedItem().toString());
             String locationText = ((EditText)findViewById(R.id.locationEditText)).getText().toString();
             currentUser.setLocation(locationText);
-            databaseHelper.updateUser(currentUser);
+            runDatabaseHelper.updateUser(currentUser);
             finish();
         }
         return super.onOptionsItemSelected(item);

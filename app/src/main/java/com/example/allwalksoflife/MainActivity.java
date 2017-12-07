@@ -5,8 +5,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.CursorAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.model.LatLng;
 
@@ -42,6 +45,18 @@ public class MainActivity extends AppCompatActivity {
         runsCursorAdapter = new RunsCursorAdapter(this, runDatabaseHelper.getRuns());
 
         runsListView.setAdapter(runsCursorAdapter);
+        runsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String title = ((TextView)view.findViewById(R.id.runTitle)).getText().toString();
+                String type = ((TextView)view.findViewById(R.id.activityType)).getText().toString();
+                ArrayList<LatLng> ghostRoute = runDatabaseHelper.getSingleRunRoute(title);
+                Intent ghostRun = new Intent(MainActivity.this, CurrentRunActivity.class);
+                ghostRun.putParcelableArrayListExtra(CurrentRunActivity.GHOST_KEY, ghostRoute);
+                ghostRun.putExtra("activityType", type);
+                startActivity(ghostRun);
+            }
+        });
         setContentView(runsListView);
     }
 

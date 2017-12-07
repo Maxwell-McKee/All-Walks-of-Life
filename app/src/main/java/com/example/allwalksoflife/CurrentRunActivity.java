@@ -47,6 +47,7 @@ public class CurrentRunActivity extends AppCompatActivity implements OnMapReadyC
     private String activityType;
 
     public static final String RUN_KEY = "finishedRun";
+    public static final String GHOST_KEY = "ghostRun";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

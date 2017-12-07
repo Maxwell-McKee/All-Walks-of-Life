@@ -129,11 +129,23 @@ public class RunDatabaseHelper extends SQLiteOpenHelper {
         return new MergeCursor(cursors);
     }
 
-    /*
-    public List<LatLng> getSingleRunRoute(String runName) {
-        List<LatLng> route = new ArrayList<LatLng>();
-        Cursor
-    }*/
+    public ArrayList<LatLng> getSingleRunRoute(String runName) {
+        ArrayList<LatLng> route = new ArrayList<>();
+        String tableName = runName.replace(' ', '_')
+                            .replace("'", "")
+                            .replace('(','_')
+                            .substring(0, runName.length() - 2);
+        String getRunQuery = "SELECT * FROM " + tableName;
+        Cursor cursor = getReadableDatabase().rawQuery(getRunQuery, null);
+        cursor.moveToFirst();
+        for (int i = 0; i < cursor.getCount(); i++) {
+            double latitude = cursor.getInt(1);
+            double longitude = cursor.getInt(2);
+            route.add(new LatLng(latitude, longitude));
+        }
+        cursor.close();
+        return route;
+    }
 
 
     /**
