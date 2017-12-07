@@ -5,6 +5,7 @@
     <string name="welcome_name">Select a Type of Activiy</string>
     <string name="result_name">Review Your Activity</string>
     <string name="title_activity_current_run">Current Run</string>
+    <string name="title_activity_badges">Review Badges Earned</string>
     <string name="start">Start</string>
     <string name="stop">Stop</string>
     <string name="time_elapsed">Time Elapsed</string>
@@ -27,6 +28,16 @@
     <string name="name_result_label">Run name:</string>
     <string name="discard">Discard</string>
     <string name="cancel">Cancel</string>
+    <string name="okay">Okay</string>
+    <string name="badges_info">Badges Information</string>
+    <string name="badges_info_message">The green badges indicate the distance milestones you have
+    reached. Each number on a green badge represnts one mile. For example, by earning the green
+        "1" badge, you have traveled one or more miles during an activity. The red badges represnt
+    time milestones reached. Each badge shows a period of time in numbers or on a clock. For example,
+        the 10 minute badge, represents you have completed an activity that took ten or more minutes.
+    The brown Roman Numerals represent an average pace measured in miles per hour you have exceed
+    in an activity. For example, if you have earned the brown "I" badge, your average pace of an activity
+    has beenat least one mile per hour.</string>
     <string name="discard_message">Are you sure you would you like to discard this %s?</string>
     <string-array name="activity_types">
         <item>Runner</item>

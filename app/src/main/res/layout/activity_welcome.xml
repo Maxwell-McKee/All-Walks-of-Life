@@ -5,6 +5,20 @@
     android:columnCount="3"
     android:paddingTop="5dp">
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_column="0"
+        android:layout_columnSpan="1"
+        android:layout_gravity="fill_horizontal"
+        android:padding="40dp"
+        android:paddingBottom="100dp"
+        android:paddingTop="70dp"
+        android:text="Nothing Here"
+        android:textColor="@android:color/white"
+        android:textSize="8sp" />
+
     <ImageView
         android:id="@+id/runIcon"
         android:layout_width="0dp"
@@ -14,6 +28,7 @@
         android:layout_columnWeight="1"
         android:layout_gravity="fill_horizontal"
         android:clickable="false"
+        android:paddingTop="20dp"
         android:src="@drawable/runner_blue" />
 
     <ImageView
@@ -25,6 +40,7 @@
         android:layout_columnWeight="1"
         android:layout_gravity="fill_horizontal"
         android:clickable="false"
+        android:paddingTop="20dp"
         android:src="@drawable/walker_purple" />
 
     <ImageView
@@ -36,6 +52,7 @@
         android:layout_columnWeight="1"
         android:layout_gravity="fill_horizontal"
         android:clickable="false"
+        android:paddingTop="20dp"
         android:src="@drawable/biker_green" />
 
     <RadioGroup
@@ -45,7 +62,7 @@
         android:layout_columnWeight="3"
         android:gravity="center_horizontal|fill_horizontal"
         android:orientation="horizontal"
-        android:padding="10dp">
+        android:padding="12dp">
 
         <RadioButton
             android:id="@+id/runRadioButton"
@@ -53,7 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="fill_horizontal"
             android:layout_weight="1"
-            android:text="Run"
+            android:text="Run   "
             android:textSize="25sp" />
 
         <RadioButton
@@ -62,7 +79,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="fill_horizontal"
             android:layout_weight="1"
-            android:text="Walk"
+            android:text="Walk "
             android:textSize="25sp" />
 
         <RadioButton

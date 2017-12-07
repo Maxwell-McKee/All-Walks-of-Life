@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/All-Walks-of-Life.iml" filepath="$PROJECT_DIR$/All-Walks-of-Life.iml" />
-      <module fileurl="file://C:\Users\ibath\git projects\All-Walks-of-Life\.idea\All-Walks-of-Life.iml" filepath="C:\Users\ibath\git projects\All-Walks-of-Life\.idea\All-Walks-of-Life.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

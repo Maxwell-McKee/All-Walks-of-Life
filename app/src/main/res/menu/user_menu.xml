@@ -7,4 +7,11 @@
         android:icon="@android:drawable/ic_menu_save"
         android:title="Save"
         app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/view_badges"
+        android:icon="@android:drawable/ic_menu_compass"
+        android:title="View Badges"
+        app:showAsAction="ifRoom" />
+
 </menu>
