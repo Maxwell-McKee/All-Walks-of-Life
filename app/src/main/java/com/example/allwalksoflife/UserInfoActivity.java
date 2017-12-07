@@ -72,7 +72,11 @@ public class UserInfoActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.save_user) {
             currentUser.setUsername(((EditText)findViewById(R.id.usernameEditText)).getText().toString());
             String ageText = ((EditText)findViewById(R.id.ageEditText)).getText().toString();
-            currentUser.setAge(Integer.parseInt(ageText));
+            try {
+                currentUser.setAge(Integer.parseInt(ageText));
+            } catch (NumberFormatException e) {
+                currentUser.setAge(-1);
+            }
             currentUser.setType(((Spinner)findViewById(R.id.activitySpinner)).getSelectedItem().toString());
             String locationText = ((EditText)findViewById(R.id.locationEditText)).getText().toString();
             currentUser.setLocation(locationText);
@@ -92,8 +96,6 @@ public class UserInfoActivity extends AppCompatActivity {
             //intent.putExtra("axnPace", maxPace);
 
             startActivity(intent);
-
-            finish();
         }
         return super.onOptionsItemSelected(item);
     }
