@@ -29,6 +29,16 @@
     <string name="discard">Discard</string>
     <string name="cancel">Cancel</string>
     <string name="okay">Okay</string>
+
+    <string name="enter_time_goal_minutes">Time goal minutes:</string>
+    <string name="time_goal_minutes_hint"> Enter time goal minutes (optional)</string>
+
+    <string name="enter_time_goal_seconds">Time goal seconds:</string>
+    <string name="time_goal_seconds_hint"> Enter time goal seconds (optional)</string>
+
+    <string name="enter_distance_goal">Distance goal:</string>
+    <string name="distance_goal_hint"> Enter distance goal in miles (optional)</string>
+
     <string name="badges_info">Badges Information</string>
     <string name="badges_info_message">The green badges indicate the distance milestones you have
     reached. Each number on a green badge represnts one mile. For example, by earning the green

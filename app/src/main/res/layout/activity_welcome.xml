@@ -12,7 +12,7 @@
         android:layout_column="0"
         android:layout_columnSpan="1"
         android:layout_gravity="fill_horizontal"
-        android:padding="40dp"
+        android:padding="10dp"
         android:paddingBottom="100dp"
         android:paddingTop="70dp"
         android:text="Nothing Here"
@@ -92,6 +92,76 @@
             android:textSize="25sp" />
 
     </RadioGroup>
+
+    <TextView
+        android:id="@+id/enterTimeGoalTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_column="0"
+        android:layout_columnSpan="1"
+        android:layout_gravity="fill_horizontal"
+        android:paddingLeft="5dp"
+        android:paddingTop="30dp"
+        android:text="@string/enter_time_goal_minutes"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/timeGoalMinutesAmount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_column="1"
+        android:layout_columnSpan="2"
+        android:layout_gravity="fill_horizontal"
+        android:hint="@string/time_goal_minutes_hint"
+        android:textColor="@android:color/black"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/enterTimeGoalSecondsTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_column="0"
+        android:layout_columnSpan="1"
+        android:layout_gravity="fill_horizontal"
+        android:paddingLeft="5dp"
+        android:text="@string/enter_time_goal_seconds"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/timeGoalSecondsAmount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_column="1"
+        android:layout_columnSpan="2"
+        android:layout_gravity="fill_horizontal"
+        android:hint="@string/time_goal_seconds_hint"
+        android:textColor="@android:color/black"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/enterDistanceGoalTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_column="0"
+        android:layout_columnSpan="1"
+        android:layout_gravity="fill_horizontal"
+        android:paddingLeft="5dp"
+        android:text="@string/enter_distance_goal"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/distanceGoalAmount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_column="1"
+        android:layout_columnSpan="2"
+        android:layout_gravity="fill_horizontal"
+        android:hint="@string/distance_goal_hint"
+        android:textColor="@android:color/black"
+        android:textSize="15sp" />
 
 
     <Button

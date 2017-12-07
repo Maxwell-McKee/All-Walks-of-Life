@@ -51,6 +51,12 @@ public class CurrentRunActivity extends AppCompatActivity implements OnMapReadyC
     private float distanceSum;
     private String activityType;
 
+    private double distanceGoal;
+    private double timeGoal;
+
+    private boolean timeGoalReached;
+    private boolean distanceGoalReached;
+
     public static final String RUN_KEY = "finishedRun";
     public static final String GHOST_KEY = "ghostRun";
 
@@ -64,6 +70,11 @@ public class CurrentRunActivity extends AppCompatActivity implements OnMapReadyC
         if(intent != null){
             //get extra information out
             activityType = intent.getStringExtra("activityType");
+
+            distanceGoal = intent.getDoubleExtra("distanceGoal",-1);
+            timeGoal = intent.getDoubleExtra("timeGoal", -1);
+            distanceGoalReached = false;
+            timeGoalReached = false;
         }
 
 
@@ -211,6 +222,24 @@ public class CurrentRunActivity extends AppCompatActivity implements OnMapReadyC
                 int hours = (secondsElapsed / 3600);
                 String time = String.format("%d:%02d:%02d", hours, minutes, seconds);
 
+                //check to see if time goal has been completed
+                //check to see if goal has been completed{
+
+                int goalSeconds =((int)timeGoal )% 60;
+                int goalMinutes = ( ( (int)timeGoal )/ 60  ) % 60;
+
+                String goalSecondsStr =  Integer.toString(goalSeconds);;
+                if(goalSeconds < 10){
+                    goalSecondsStr = "0" + Integer.toString(goalSeconds);
+                }
+                if(timeGoal != -1){
+                    if(secondsElapsed >= timeGoal && timeGoalReached == false ){
+                        Toast.makeText(CurrentRunActivity.this, "Congratulations! You have surpassed your " +
+                                "time goal of " +goalMinutes + ":" +  goalSecondsStr +"!", Toast.LENGTH_SHORT).show();
+                        timeGoalReached = true;
+                    }
+                }
+
                 ((TextView)findViewById(R.id.timeElapsed)).setText(time);
                 timer.postDelayed(this, 1000);
             }
@@ -237,6 +266,15 @@ public class CurrentRunActivity extends AppCompatActivity implements OnMapReadyC
                         );
                         latLng1 = latLng2;
                         distanceSum += (distance[0] / 1609.34f); // Convert to miles
+
+                        //check to see if goal has been completed{
+                        if(distanceGoal != -1){
+                            if(distanceSum >= distanceGoal && distanceGoalReached == false ){
+                                Toast.makeText(CurrentRunActivity.this, "Congratulations! You have surpassed your " +
+                                        "distance goal of " + distanceGoal +"!", Toast.LENGTH_SHORT).show();
+                                distanceGoalReached = true;
+                            }
+                        }
                     }
                     ((TextView)findViewById(R.id.distance)).setText(
                             String.format("%.2f %s", distanceSum , getString(R.string.distance_measure)));

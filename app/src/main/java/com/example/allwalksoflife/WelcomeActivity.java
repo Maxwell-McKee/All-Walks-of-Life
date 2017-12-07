@@ -6,6 +6,7 @@ import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
@@ -36,7 +37,7 @@ public class WelcomeActivity extends AppCompatActivity {
     public void startClicked(View view){
         //check to see if at lease one radio button has been clicked, if not toast
         //if so, go to next activity
-
+        boolean isReadyForNextActivity = true;
         boolean isClicked = isOneSelected();
         if(isClicked ){
             Intent intent = new Intent(WelcomeActivity.this, CurrentRunActivity.class);
@@ -63,9 +64,46 @@ public class WelcomeActivity extends AppCompatActivity {
                 intent.putExtra("activityType", "Run");
             }
 
-            startActivity(intent);
-            Toast.makeText(this, "Go to the run activity.", Toast.LENGTH_SHORT).show();
-            finish();
+            //check to see if a time goal was entered.
+            //convert minutes to seconds
+            EditText editTextM = findViewById(R.id.timeGoalMinutesAmount);
+            String minText = editTextM.getText().toString();
+
+            EditText editTextS = findViewById(R.id.timeGoalSecondsAmount);
+            String secText = editTextS.getText().toString();
+            if(!minText.equals("") && !secText.equals("")){
+                //convert minutes to seconds
+                //add seconds and minutes
+                double minAmount = Double.parseDouble(minText);
+                double secAmount = Double.parseDouble(secText);
+                double totalTimeGoal = minAmount + secAmount;
+                intent.putExtra("timeGoal",totalTimeGoal);
+            }
+            else if(!minText.equals("") || !secText.equals("")){
+                //only one was entered
+                Toast.makeText(this, "Please enter time goals for both minutes and seconds", Toast.LENGTH_SHORT).show();
+                isReadyForNextActivity = false;
+            }
+            else{
+                //no time values entered.
+                isReadyForNextActivity = true;
+            }
+
+            EditText editTextDistance = findViewById(R.id.distanceGoalAmount);
+            String distanceText = editTextDistance.getText().toString();
+            if(!distanceText.equals("")){
+                //try:
+                //convert minutes to seconds
+                //add seconds and minutes
+                double distanceGoalAmount = Double.parseDouble(minText);
+
+                intent.putExtra("distanceGoal",distanceGoalAmount);
+            }
+
+            if(isReadyForNextActivity) {
+                startActivity(intent);
+                finish();
+            }
         }else{
             Toast.makeText(this, "Please select an activity.", Toast.LENGTH_SHORT).show();
         }
