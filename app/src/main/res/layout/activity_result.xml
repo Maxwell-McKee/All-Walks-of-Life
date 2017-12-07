@@ -1,37 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
+    android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:columnCount="2"
-    android:paddingTop="10dp"
-    android:rowCount="5">
+    android:columnCount="3">
 
     <ImageView
         android:id="@+id/activityTypeImageView"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_column="0"
-        android:layout_columnSpan="2"
+        android:layout_columnSpan="3"
         android:layout_columnWeight="3"
         android:layout_gravity="fill_horizontal"
-        android:layout_row="0" />
+        android:layout_row="0"
+        android:padding="15dp" />
 
     <TextView
         android:id="@+id/totalTimeText"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_column="0"
         android:layout_columnSpan="1"
-        android:layout_columnWeight="1.5"
+        android:layout_columnWeight="1"
         android:layout_gravity="fill_horizontal"
         android:layout_row="1"
-        android:paddingBottom="10dp"
+        android:paddingBottom="12dp"
         android:paddingLeft="10dp"
-        android:paddingTop="10dp"
-        android:text="@string/time_result_label"
-        android:textColor="@android:color/black"
-        android:textSize="17sp" />
+        android:paddingTop="12dp"
+        android:text="Time Elapsed: "
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/totalTimeAmount"
@@ -39,94 +38,118 @@
         android:layout_height="wrap_content"
         android:layout_column="1"
         android:layout_columnSpan="1"
-        android:layout_columnWeight="1"
-        android:layout_gravity="fill_vertical|fill_horizontal"
+        android:layout_columnWeight="2"
+        android:layout_gravity="fill_horizontal"
         android:layout_row="1"
-        android:gravity="left|center"
-        android:textColor="@android:color/black"
-        android:textSize="17sp" />
+        android:fontFamily="sans-serif"
+        android:gravity="center"
+        android:paddingBottom="12dp"
+        android:paddingTop="12dp"
+        android:text="0:00:00"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="22sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/totalMilesText"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_column="0"
-        android:layout_columnWeight="1.5"
+        android:layout_columnSpan="1"
+        android:layout_columnWeight="1"
         android:layout_gravity="fill_horizontal"
         android:layout_row="2"
-        android:layout_rowSpan="1"
-        android:paddingBottom="10dp"
+        android:paddingBottom="12dp"
         android:paddingLeft="10dp"
-        android:paddingTop="10dp"
-        android:text="@string/distance_result_label"
-        android:textColor="@android:color/black"
-        android:textSize="17sp" />
+        android:paddingTop="12dp"
+        android:text="Total Milage: "
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/totalDistanceAmount"
+        android:id="@+id/totalMilesAmount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_column="1"
-        android:layout_columnWeight="1"
-        android:layout_gravity="fill_vertical|fill_horizontal"
+        android:layout_columnSpan="1"
+        android:layout_columnWeight="2"
+        android:layout_gravity="fill_horizontal"
         android:layout_row="2"
-        android:gravity="left|center"
-        android:textColor="@android:color/black"
-        android:textSize="17sp" />
+        android:fontFamily="sans-serif"
+        android:gravity="center"
+        android:paddingBottom="12dp"
+        android:paddingTop="12dp"
+        android:text="0.00"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="22sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/totalPaceText"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_column="0"
-        android:layout_columnWeight="1.5"
+        android:layout_columnSpan="1"
+        android:layout_columnWeight="1"
         android:layout_gravity="fill_horizontal"
         android:layout_row="3"
-        android:layout_rowSpan="1"
-        android:paddingBottom="10dp"
+        android:paddingBottom="12dp"
         android:paddingLeft="10dp"
-        android:paddingTop="10dp"
-        android:text="@string/speed_result_label"
-        android:textColor="@android:color/black"
-        android:textSize="17sp" />
+        android:paddingTop="12dp"
+        android:text="Pace (mi/hr): "
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/totalPaceAmount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_column="1"
-        android:layout_columnWeight="1"
-        android:layout_gravity="fill_vertical|fill_horizontal"
+        android:layout_columnSpan="1"
+        android:layout_columnWeight="2"
+        android:layout_gravity="fill_horizontal"
         android:layout_row="3"
-        android:gravity="left|center"
-        android:textColor="@android:color/black"
-        android:textSize="17sp" />
+        android:fontFamily="sans-serif"
+        android:gravity="center"
+        android:paddingBottom="12dp"
+        android:paddingTop="12dp"
+        android:text="0.00"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="22sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/NameText"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_column="0"
-        android:layout_columnWeight="1.5"
-        android:layout_gravity="fill_horizontal"
-        android:layout_row="4"
-        android:paddingBottom="10dp"
-        android:paddingLeft="10dp"
-        android:paddingTop="10dp"
-        android:text="@string/name_result_label"
-        android:textColor="@android:color/black"
-        android:textSize="17sp" />
-
-    <EditText
-        android:id="@+id/activityNameEditText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_column="1"
+        android:layout_columnSpan="1"
         android:layout_columnWeight="1"
         android:layout_gravity="fill_horizontal"
         android:layout_row="4"
-        android:hint="Enter Name Here"
-        android:nestedScrollingEnabled="true"
-        android:singleLine="true" />
+        android:paddingBottom="12dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="12dp"
+        android:text="Activity Name: "
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
+    <EditText
+        android:id="@+id/activityNameEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_column="1"
+        android:layout_columnSpan="1"
+        android:layout_columnWeight="2"
+        android:layout_gravity="fill_horizontal"
+        android:layout_row="4"
+        android:hint="Enter activity name here:"
+        android:maxLength="16"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="17sp" />
 </GridLayout>

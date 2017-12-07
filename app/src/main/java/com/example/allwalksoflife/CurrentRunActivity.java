@@ -58,9 +58,6 @@ public class CurrentRunActivity extends AppCompatActivity implements OnMapReadyC
         if(intent != null){
             //get extra information out
             activityType = intent.getStringExtra("activityType");
-
-            //display toast showing the username and pin
-            Toast.makeText(this, "activityType: " + activityType, Toast.LENGTH_SHORT).show();
         }
 
 

@@ -1,6 +1,7 @@
 package com.example.allwalksoflife;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -63,6 +64,22 @@ public class UserInfoActivity extends AppCompatActivity {
             String locationText = ((EditText)findViewById(R.id.locationEditText)).getText().toString();
             currentUser.setLocation(locationText);
             databaseHelper.updateUser(currentUser);
+            finish();
+        }
+        if(item.getItemId() == R.id.view_badges){
+            Intent intent = new Intent(UserInfoActivity.this, BadgesActivity.class);
+
+            //send through max amount of miles
+            //intent.putExtra("maxSeconds", maxAmountOfSeconds);
+
+            //send through max amount of time
+            //intent.putExtra("maxDistance", maxAmountOfMiles);
+
+            //send through max amount of pace
+            //intent.putExtra("axnPace", maxPace);
+
+            startActivity(intent);
+
             finish();
         }
         return super.onOptionsItemSelected(item);

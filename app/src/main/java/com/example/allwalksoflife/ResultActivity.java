@@ -38,7 +38,7 @@ public class ResultActivity  extends AppCompatActivity {
         String distanceAmount = String.format("%.2f %s", finishedRun.getTotalDistance(), getString(R.string.distance_measure));
         String paceAmount = String.format("%.2f %s", finishedRun.getAveragePace(), getString(R.string.speed_measure));
         ((TextView)findViewById(R.id.totalTimeAmount)).setText(timeAmount);
-        ((TextView)findViewById(R.id.totalDistanceAmount)).setText(distanceAmount);
+        ((TextView)findViewById(R.id.totalMilesAmount)).setText(distanceAmount);
         ((TextView)findViewById(R.id.totalPaceAmount)).setText(paceAmount);
 
         //display toast showing the username and pin
@@ -81,7 +81,7 @@ public class ResultActivity  extends AppCompatActivity {
         int menuId = item.getItemId();
 
         switch(menuId){
-            case R.id.result_save:
+            case R.id.infoMenuItem:
                 //check to see if the user entered a name for the activity
                 EditText editText = findViewById(R.id.activityNameEditText);
                 String text = editText.getText().toString();
@@ -91,10 +91,6 @@ public class ResultActivity  extends AppCompatActivity {
                 }
                 return true;
 
-            case android.R.id.home:
-            case R.id.result_discard:
-                alertDiscard();
-                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
