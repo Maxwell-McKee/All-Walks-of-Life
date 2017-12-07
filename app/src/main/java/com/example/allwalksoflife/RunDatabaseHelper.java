@@ -134,15 +134,17 @@ public class RunDatabaseHelper extends SQLiteOpenHelper {
         String tableName = runName.replace(' ', '_')
                             .replace("'", "")
                             .replace('(','_')
-                            .substring(0, runName.length() - 2);
+                            .replace(')','\0');
         String getRunQuery = "SELECT * FROM " + tableName;
         Cursor cursor = getReadableDatabase().rawQuery(getRunQuery, null);
         cursor.moveToFirst();
         for (int i = 0; i < cursor.getCount(); i++) {
-            double latitude = cursor.getInt(1);
-            double longitude = cursor.getInt(2);
+            double latitude = cursor.getDouble(1);
+            double longitude = cursor.getDouble(2);
             route.add(new LatLng(latitude, longitude));
+            cursor.moveToNext();
         }
+        Log.d(TAG, "getSingleRunRoute: " + route);
         cursor.close();
         return route;
     }
@@ -207,6 +209,7 @@ public class RunDatabaseHelper extends SQLiteOpenHelper {
         Log.d(TAG, "addSingleRun: " + createString);
         db.execSQL(createString);
         List<LatLng> runList = run.getRouteLatLng();
+        Log.d(TAG, "addSingleRun " + runList);
         for (LatLng coordinates : runList) {
             String insertString = "INSERT INTO " + runTableName + " VALUES(null, " +
                     coordinates.latitude + ", " + coordinates.longitude + ")";

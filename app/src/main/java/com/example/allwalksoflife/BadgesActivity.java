@@ -44,52 +44,52 @@ public class BadgesActivity extends AppCompatActivity {
 
 
             if(longestDistance >= 1){
-                ImageView oneMile = (ImageView) findViewById(R.id.oneMileBadge);
+                ImageView oneMile = findViewById(R.id.oneMileBadge);
                 oneMile.setVisibility(View.VISIBLE);
                 totalElementsNum++;
             }
             if(longestDistance >= 2){
-                ImageView twoMile = (ImageView) findViewById(R.id.twoMileBadge);
+                ImageView twoMile = findViewById(R.id.twoMileBadge);
                 twoMile.setVisibility(View.VISIBLE);
                 totalElementsNum++;
             }
             if(longestDistance >= 3){
-                ImageView threeMile = (ImageView) findViewById(R.id.threeMileBadge);
+                ImageView threeMile = findViewById(R.id.threeMileBadge);
                 threeMile.setVisibility(View.VISIBLE);
                 totalElementsNum++;
             }
             if(longestDistance >= 5){
-                ImageView fiveMile = (ImageView) findViewById(R.id.fiveMileBadge);
+                ImageView fiveMile = findViewById(R.id.fiveMileBadge);
                 fiveMile.setVisibility(View.VISIBLE);
                 totalElementsNum++;
             }
             if(longestDistance >= 7){
-                ImageView sevenMile = (ImageView) findViewById(R.id.sevenMileBadge);
+                ImageView sevenMile = findViewById(R.id.sevenMileBadge);
                 sevenMile.setVisibility(View.VISIBLE);
                 totalElementsNum++;
             }
             if(longestDistance >= 10){
-                ImageView tenMile = (ImageView) findViewById(R.id.tenMileBadge);
+                ImageView tenMile = findViewById(R.id.tenMileBadge);
                 tenMile.setVisibility(View.VISIBLE);
                 totalElementsNum++;
             }
             if(longestDistance >= 20){
-                ImageView twentyMile = (ImageView) findViewById(R.id.twentyMileBadge);
+                ImageView twentyMile = findViewById(R.id.twentyMileBadge);
                 twentyMile.setVisibility(View.VISIBLE);
                 totalElementsNum++;
             }
             if(longestDistance >= 50){
-                ImageView fiftyMile = (ImageView) findViewById(R.id.fiftyMileBadge);
+                ImageView fiftyMile = findViewById(R.id.fiftyMileBadge);
                 fiftyMile.setVisibility(View.VISIBLE);
                 totalElementsNum++;
             }
             if(longestDistance >= 70){
-                ImageView seventyMile = (ImageView) findViewById(R.id.seventyMileBadge);
+                ImageView seventyMile = findViewById(R.id.seventyMileBadge);
                 seventyMile.setVisibility(View.VISIBLE);
                 totalElementsNum++;
             }
             if(longestDistance >= 100){
-                ImageView oneHundredMile = (ImageView) findViewById(R.id.oneHundredMileBadge);
+                ImageView oneHundredMile = findViewById(R.id.oneHundredMileBadge);
                 oneHundredMile.setVisibility(View.VISIBLE);
                 totalElementsNum++;
             }
@@ -101,38 +101,38 @@ public class BadgesActivity extends AppCompatActivity {
             //.setVisibility(View.VISIBLE);
 
             if(longestTime >= 60){
-                ImageView oneMin = (ImageView) findViewById(R.id.fiveMinuteBadge);
+                ImageView oneMin = findViewById(R.id.fiveMinuteBadge);
                 oneMin.setVisibility(View.VISIBLE);
                 totalElementsNum++;
             }
             if(longestTime >= 300){
-                ImageView fiveMin = (ImageView) findViewById(R.id.fiveMinuteBadge);
+                ImageView fiveMin = findViewById(R.id.fiveMinuteBadge);
                 fiveMin.setVisibility(View.VISIBLE);
                 totalElementsNum++;
             }
 
             if(longestTime >= 600){
-                ImageView tenMin = (ImageView) findViewById(R.id.tenMinuteBadge);
+                ImageView tenMin = findViewById(R.id.tenMinuteBadge);
                 tenMin.setVisibility(View.VISIBLE);
                 totalElementsNum++;
             }
             if(longestTime >= 900){
-                ImageView fifteenMin = (ImageView) findViewById(R.id.fifteenMinuteBadge);
+                ImageView fifteenMin = findViewById(R.id.fifteenMinuteBadge);
                 fifteenMin.setVisibility(View.VISIBLE);
                 totalElementsNum++;
             }
             if(longestTime >= 1800){
-                ImageView thirtyMin = (ImageView) findViewById(R.id.thirtyMinuteBadge);
+                ImageView thirtyMin = findViewById(R.id.thirtyMinuteBadge);
                 thirtyMin.setVisibility(View.VISIBLE);
                 totalElementsNum++;
             }
             if(longestTime >= 2700){
-                ImageView fortyFiveMin = (ImageView) findViewById(R.id.fortyFiveMinuteBadge);
+                ImageView fortyFiveMin = findViewById(R.id.fortyFiveMinuteBadge);
                 fortyFiveMin.setVisibility(View.VISIBLE);
                 totalElementsNum++;
             }
             if(longestTime >= 3600){
-                ImageView oneHour = (ImageView) findViewById(R.id.oneHourBadge);
+                ImageView oneHour = findViewById(R.id.oneHourBadge);
                 oneHour.setVisibility(View.VISIBLE);
                 totalElementsNum++;
             }
@@ -140,23 +140,23 @@ public class BadgesActivity extends AppCompatActivity {
 
             //pace
             if(maxPace >= 1){
-                ImageView onePace = (ImageView) findViewById(R.id.onePaceBadge);
+                ImageView onePace = findViewById(R.id.onePaceBadge);
                 onePace.setVisibility(View.VISIBLE);
                 totalElementsNum++;
             }
             if(maxPace >= 3){
-                ImageView threePace = (ImageView) findViewById(R.id.threePaceBadge);
+                ImageView threePace = findViewById(R.id.threePaceBadge);
                 threePace.setVisibility(View.VISIBLE);
                 totalElementsNum++;
             }
 
             if(maxPace >= 5){
-                ImageView fivePace = (ImageView) findViewById(R.id.fivePaceBadge);
+                ImageView fivePace = findViewById(R.id.fivePaceBadge);
                 fivePace.setVisibility(View.VISIBLE);
                 totalElementsNum++;
             }
             if(maxPace >= 10){
-                ImageView tenPace = (ImageView) findViewById(R.id.tenPaceBadge);
+                ImageView tenPace = findViewById(R.id.tenPaceBadge);
                 tenPace.setVisibility(View.VISIBLE);
                 totalElementsNum++;
             }

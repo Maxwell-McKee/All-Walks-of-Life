@@ -33,9 +33,6 @@
             android:name=".WelcomeActivity"
             android:label="@string/welcome_name"
             android:parentActivityName=".MainActivity">
-            <intent-filter>
-
-            </intent-filter>
         </activity>
 
         <activity
@@ -67,10 +64,6 @@
             android:name=".BadgesActivity"
             android:label="@string/title_activity_badges"
             android:parentActivityName=".UserInfoActivity">
-            <intent-filter>
-
-            </intent-filter>
-
         </activity>
 
 

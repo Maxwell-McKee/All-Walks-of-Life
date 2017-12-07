@@ -81,7 +81,7 @@ public class ResultActivity  extends AppCompatActivity {
         int menuId = item.getItemId();
 
         switch(menuId){
-            case R.id.infoMenuItem:
+            case R.id.result_save:
                 //check to see if the user entered a name for the activity
                 EditText editText = findViewById(R.id.activityNameEditText);
                 String text = editText.getText().toString();
@@ -91,6 +91,10 @@ public class ResultActivity  extends AppCompatActivity {
                 }
                 return true;
 
+            case android.R.id.home:
+            case R.id.result_discard:
+                alertDiscard();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

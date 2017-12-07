@@ -29,8 +29,12 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CurrentRunActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -40,6 +44,7 @@ public class CurrentRunActivity extends AppCompatActivity implements OnMapReadyC
     private LocationCallback mLocationCallback;
     private String TAG = "CurrentRunActivity";
     private PolylineOptions currentRoute;
+    private Polyline currentRouteLine;
     private boolean finishedRunning;
     private int REQUEST_PERMISSION = 1;
     private int secondsElapsed = 0;
@@ -75,6 +80,7 @@ public class CurrentRunActivity extends AppCompatActivity implements OnMapReadyC
                     double longitude = lastLocation.getLongitude();
                     LatLng position = new LatLng(latitude, longitude);
                     currentRoute.add(position);
+                    currentRouteLine.setPoints(currentRoute.getPoints());
                     Log.d(TAG, "position = " + position);
                 }
             }
@@ -107,7 +113,6 @@ public class CurrentRunActivity extends AppCompatActivity implements OnMapReadyC
                     startActivity(intent);
                     finish();
                 }
-                mMap.addPolyline(currentRoute.width(5.0f).color(Color.BLUE));
             }
         });
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -152,6 +157,7 @@ public class CurrentRunActivity extends AppCompatActivity implements OnMapReadyC
             Log.d(TAG, "asking for permission");
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_PERMISSION);
         } else {
+
             mFusedLocationClient.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
                 @Override
                 public void onSuccess(Location location) {
@@ -162,9 +168,20 @@ public class CurrentRunActivity extends AppCompatActivity implements OnMapReadyC
                         currentRoute.add(position);
                         mMap.moveCamera(CameraUpdateFactory.newLatLng(position));
                         mMap.moveCamera(CameraUpdateFactory.zoomTo(15.0f));
+                        currentRouteLine = mMap.addPolyline(currentRoute.width(5.0f).color(Color.BLUE));
                     }
                 }
             });
+            Intent intent = getIntent();
+            if (intent.getParcelableArrayListExtra(GHOST_KEY) != null) {
+                ArrayList<LatLng> ghostPoints = intent.getParcelableArrayListExtra(GHOST_KEY);
+                Log.d(TAG, "Adding ghost Route: " + ghostPoints);
+                PolylineOptions ghostRoute = new PolylineOptions()
+                        .width(5.0f)
+                        .color(Color.GREEN)
+                        .addAll(ghostPoints);
+                mMap.addPolyline(ghostRoute);
+            }
             mFusedLocationClient.requestLocationUpdates(mLocationRequest, mLocationCallback, null);
             mMap.setMyLocationEnabled(true);
         }
