@@ -176,9 +176,9 @@ public class RunDatabaseHelper extends SQLiteOpenHelper {
 
     private void addSingleRun(Run run) {
         SQLiteDatabase db = getWritableDatabase();
-        String originalName = run.getName().replace(' ', '_').replace("''", "");
+        String originalName = run.getName().replace(' ', '_');
         String safeTableQuery = "SELECT DISTINCT tbl_name FROM sqlite_master " +
-                                "WHERE tbl_name = '" + originalName + "'";
+                                "WHERE tbl_name = '" + originalName.replace("''", "") + "'";
         Log.d(TAG, "addSingleRun: " + safeTableQuery + db.rawQuery(safeTableQuery, null).getCount());
         int i = 1;
         while(db.rawQuery(safeTableQuery, null).getCount() != 0) { // See if table already exists
