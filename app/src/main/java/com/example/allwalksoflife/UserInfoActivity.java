@@ -2,8 +2,10 @@ package com.example.allwalksoflife;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,6 +25,8 @@ public class UserInfoActivity extends AppCompatActivity {
     private RunDatabaseHelper runDatabaseHelper;
     private ArrayAdapter<CharSequence> activityArrayAdapter;
     private User currentUser;
+    private ListView recordsListView;
+    private final String TAG = "UserInfoActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +48,7 @@ public class UserInfoActivity extends AppCompatActivity {
         activitySpinner.setSelection(activityArrayAdapter.getPosition(currentUser.getType()));
         ((EditText)findViewById(R.id.locationEditText)).setText(currentUser.getLocation());
 
-        ListView recordsListView = findViewById(R.id.recordsListView);
+        recordsListView = findViewById(R.id.recordsListView);
         CursorAdapter recordsCursorAdapter = new RunsCursorAdapter(this, runDatabaseHelper.getUserRecords());
         recordsListView.setAdapter(recordsCursorAdapter);
         recordsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -85,15 +89,25 @@ public class UserInfoActivity extends AppCompatActivity {
         }
         if(item.getItemId() == R.id.view_badges){
             Intent intent = new Intent(UserInfoActivity.this, BadgesActivity.class);
+            Cursor userRecords = runDatabaseHelper.getUserRecords();
+            float pace = 0.0f;
+            float distance = 0.0f;
+            int time = 0;
+            if (userRecords.getCount() != 0) {
+                userRecords.moveToFirst();
+                pace = userRecords.getFloat(4);
+                userRecords.moveToNext();
+                distance = userRecords.getFloat(3);
+                userRecords.moveToNext();
+                time = userRecords.getInt(2);
+            }
+            userRecords.close();
 
-            //send through max amount of miles
-            //intent.putExtra("maxSeconds", maxAmountOfSeconds);
+            Log.d(TAG, "view_badges :" + pace + " " + distance + " " + time);
 
-            //send through max amount of time
-            //intent.putExtra("maxDistance", maxAmountOfMiles);
-
-            //send through max amount of pace
-            //intent.putExtra("axnPace", maxPace);
+            intent.putExtra("maxPace", pace);
+            intent.putExtra("maxDistance", distance);
+            intent.putExtra("maxSeconds", time);
 
             startActivity(intent);
         }

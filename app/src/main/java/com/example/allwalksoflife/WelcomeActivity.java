@@ -76,7 +76,7 @@ public class WelcomeActivity extends AppCompatActivity {
                 //add seconds and minutes
                 double minAmount = Double.parseDouble(minText);
                 double secAmount = Double.parseDouble(secText);
-                double totalTimeGoal = minAmount + secAmount;
+                double totalTimeGoal = minAmount*60 + secAmount;
                 intent.putExtra("timeGoal",totalTimeGoal);
             }
             else if(!minText.equals("") || !secText.equals("")){

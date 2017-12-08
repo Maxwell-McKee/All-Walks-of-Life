@@ -56,6 +56,7 @@ public class CurrentRunActivity extends AppCompatActivity implements OnMapReadyC
 
     private boolean timeGoalReached;
     private boolean distanceGoalReached;
+    private boolean running;
 
     public static final String RUN_KEY = "finishedRun";
     public static final String GHOST_KEY = "ghostRun";
@@ -64,6 +65,7 @@ public class CurrentRunActivity extends AppCompatActivity implements OnMapReadyC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_current_run);
+        running = false;
 
         //get intent from welcome activity
         Intent intent = getIntent();
@@ -86,7 +88,7 @@ public class CurrentRunActivity extends AppCompatActivity implements OnMapReadyC
             @Override
             public void onLocationResult(LocationResult locationResult) {
                 Location lastLocation = locationResult.getLastLocation();
-                if (lastLocation != null) {
+                if (lastLocation != null && running) {
                     double latitude = lastLocation.getLatitude();
                     double longitude = lastLocation.getLongitude();
                     LatLng position = new LatLng(latitude, longitude);
@@ -98,11 +100,11 @@ public class CurrentRunActivity extends AppCompatActivity implements OnMapReadyC
         };
 
         findViewById(R.id.startStopButton).setOnClickListener(new View.OnClickListener() {
-            private boolean running = false;
             @Override
             public void onClick(View view) {
                 if(!running && !finishedRunning) {
                     running = true;
+                    currentRouteLine = mMap.addPolyline(currentRoute.width(5.0f).color(Color.BLUE));
                     startTimer();
                     startDistanceCalculations();
                     ((Button)findViewById(R.id.startStopButton)).setText(getString(R.string.stop));
@@ -179,7 +181,6 @@ public class CurrentRunActivity extends AppCompatActivity implements OnMapReadyC
                         currentRoute.add(position);
                         mMap.moveCamera(CameraUpdateFactory.newLatLng(position));
                         mMap.moveCamera(CameraUpdateFactory.zoomTo(15.0f));
-                        currentRouteLine = mMap.addPolyline(currentRoute.width(5.0f).color(Color.BLUE));
                     }
                 }
             });
@@ -228,7 +229,7 @@ public class CurrentRunActivity extends AppCompatActivity implements OnMapReadyC
                 int goalSeconds =((int)timeGoal )% 60;
                 int goalMinutes = ( ( (int)timeGoal )/ 60  ) % 60;
 
-                String goalSecondsStr =  Integer.toString(goalSeconds);;
+                String goalSecondsStr =  Integer.toString(goalSeconds);
                 if(goalSeconds < 10){
                     goalSecondsStr = "0" + Integer.toString(goalSeconds);
                 }

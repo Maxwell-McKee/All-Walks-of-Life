@@ -101,7 +101,7 @@ public class BadgesActivity extends AppCompatActivity {
             //.setVisibility(View.VISIBLE);
 
             if(longestTime >= 60){
-                ImageView oneMin = findViewById(R.id.fiveMinuteBadge);
+                ImageView oneMin = findViewById(R.id.oneMinuteBadge);
                 oneMin.setVisibility(View.VISIBLE);
                 totalElementsNum++;
             }
@@ -181,18 +181,13 @@ public class BadgesActivity extends AppCompatActivity {
         int menuId = item.getItemId();
 
         switch(menuId){
-            case R.id.result_save:
+            case R.id.infoMenuItem:
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(BadgesActivity.this);
 
                 alertDialog.setTitle(getString(R.string.badges_info))
                         .setMessage(getString(R.string.badges_info_message))
-                        .setPositiveButton(getString(R.string.okay), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialoginterface, int i) {
-                                //go back to mainActivity
-                                finish();
-                            }
-                        });
-                alertDialog.show();
+                        .setPositiveButton(getString(R.string.okay), null)
+                        .show();
                 return true;
 
             case android.R.id.home:

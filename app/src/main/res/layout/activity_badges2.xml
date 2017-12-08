@@ -5,11 +5,11 @@
     android:layout_height="match_parent">
 
     <GridLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:columnCount="3"
-        >
+        android:orientation="vertical"
+        android:paddingTop="5dp">
 
         <ImageView
             android:id="@+id/oneMileBadge"
@@ -18,9 +18,11 @@
             android:layout_columnSpan="1"
             android:layout_columnWeight="1"
             android:layout_gravity="fill_horizontal"
+            android:layout_margin="0dp"
             android:clickable="false"
+            android:padding="5dp"
             android:src="@drawable/one_green"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/twoMileBadge"
@@ -29,9 +31,11 @@
             android:layout_columnSpan="1"
             android:layout_columnWeight="1"
             android:layout_gravity="fill_horizontal"
+            android:layout_margin="0dp"
             android:clickable="false"
+            android:padding="5dp"
             android:src="@drawable/two_green"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/threeMileBadge"
@@ -40,9 +44,11 @@
             android:layout_columnSpan="1"
             android:layout_columnWeight="1"
             android:layout_gravity="fill_horizontal"
+            android:layout_margin="0dp"
             android:clickable="false"
+            android:padding="5dp"
             android:src="@drawable/three_green"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/fiveMileBadge"
@@ -51,9 +57,11 @@
             android:layout_columnSpan="1"
             android:layout_columnWeight="1"
             android:layout_gravity="fill_horizontal"
+            android:layout_margin="0dp"
             android:clickable="false"
+            android:padding="5dp"
             android:src="@drawable/five_green"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/sevenMileBadge"
@@ -62,9 +70,11 @@
             android:layout_columnSpan="1"
             android:layout_columnWeight="1"
             android:layout_gravity="fill_horizontal"
+            android:layout_margin="0dp"
             android:clickable="false"
+            android:padding="5dp"
             android:src="@drawable/seven_green"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/tenMileBadge"
@@ -73,9 +83,11 @@
             android:layout_columnSpan="1"
             android:layout_columnWeight="1"
             android:layout_gravity="fill_horizontal"
+            android:layout_margin="0dp"
             android:clickable="false"
+            android:padding="5dp"
             android:src="@drawable/ten_green"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/twentyMileBadge"
@@ -84,9 +96,11 @@
             android:layout_columnSpan="1"
             android:layout_columnWeight="1"
             android:layout_gravity="fill_horizontal"
+            android:layout_margin="0dp"
             android:clickable="false"
+            android:padding="5dp"
             android:src="@drawable/twenty_green"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/fiftyMileBadge"
@@ -95,9 +109,11 @@
             android:layout_columnSpan="1"
             android:layout_columnWeight="1"
             android:layout_gravity="fill_horizontal"
+            android:layout_margin="0dp"
             android:clickable="false"
+            android:padding="5dp"
             android:src="@drawable/fifty_green"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/seventyMileBadge"
@@ -106,9 +122,11 @@
             android:layout_columnSpan="1"
             android:layout_columnWeight="1"
             android:layout_gravity="fill_horizontal"
+            android:layout_margin="0dp"
             android:clickable="false"
+            android:padding="5dp"
             android:src="@drawable/seventy_green"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/oneHundredMileBadge"
@@ -117,9 +135,11 @@
             android:layout_columnSpan="1"
             android:layout_columnWeight="1"
             android:layout_gravity="fill_horizontal"
+            android:layout_margin="0dp"
             android:clickable="false"
+            android:padding="5dp"
             android:src="@drawable/one_hundred_green"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/oneMinuteBadge"
@@ -128,9 +148,12 @@
             android:layout_columnSpan="1"
             android:layout_columnWeight="1"
             android:layout_gravity="fill_horizontal"
+            android:layout_margin="0dp"
             android:clickable="false"
+            android:padding="5dp"
             android:src="@drawable/one_minute"
-            android:visibility="gone"/>
+            android:visibility="gone" />
+
         <ImageView
             android:id="@+id/fiveMinuteBadge"
             android:layout_width="0dp"
@@ -138,9 +161,11 @@
             android:layout_columnSpan="1"
             android:layout_columnWeight="1"
             android:layout_gravity="fill_horizontal"
+            android:layout_margin="0dp"
             android:clickable="false"
+            android:padding="5dp"
             android:src="@drawable/five_minutes"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/tenMinuteBadge"
@@ -149,9 +174,11 @@
             android:layout_columnSpan="1"
             android:layout_columnWeight="1"
             android:layout_gravity="fill_horizontal"
+            android:layout_margin="0dp"
             android:clickable="false"
+            android:padding="5dp"
             android:src="@drawable/ten_minutes"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/fifteenMinuteBadge"
@@ -160,22 +187,26 @@
             android:layout_columnSpan="1"
             android:layout_columnWeight="1"
             android:layout_gravity="fill_horizontal"
+            android:layout_margin="0dp"
             android:clickable="false"
+            android:padding="5dp"
             android:src="@drawable/fifteen_minutes"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/thirtyMinuteBadge"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-              
-            android:layout_row="3"
+
             android:layout_columnSpan="1"
             android:layout_columnWeight="1"
             android:layout_gravity="fill_horizontal"
+            android:layout_margin="0dp"
+            android:layout_row="3"
             android:clickable="false"
+            android:padding="5dp"
             android:src="@drawable/thirty_minutes"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/fortyFiveMinuteBadge"
@@ -184,9 +215,11 @@
             android:layout_columnSpan="1"
             android:layout_columnWeight="1"
             android:layout_gravity="fill_horizontal"
+            android:layout_margin="0dp"
             android:clickable="false"
+            android:padding="5dp"
             android:src="@drawable/forty_five_minutes"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/oneHourBadge"
@@ -195,9 +228,11 @@
             android:layout_columnSpan="1"
             android:layout_columnWeight="1"
             android:layout_gravity="fill_horizontal"
+            android:layout_margin="0dp"
             android:clickable="false"
+            android:padding="5dp"
             android:src="@drawable/one_hour"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/onePaceBadge"
@@ -206,9 +241,11 @@
             android:layout_columnSpan="1"
             android:layout_columnWeight="1"
             android:layout_gravity="fill_horizontal"
+            android:layout_margin="0dp"
             android:clickable="false"
+            android:padding="5dp"
             android:src="@drawable/roman_num_one"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/threePaceBadge"
@@ -217,9 +254,11 @@
             android:layout_columnSpan="1"
             android:layout_columnWeight="1"
             android:layout_gravity="fill_horizontal"
+            android:layout_margin="0dp"
             android:clickable="false"
+            android:padding="5dp"
             android:src="@drawable/roman_num_three"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/fivePaceBadge"
@@ -228,9 +267,11 @@
             android:layout_columnSpan="1"
             android:layout_columnWeight="1"
             android:layout_gravity="fill_horizontal"
+            android:layout_margin="0dp"
             android:clickable="false"
+            android:padding="5dp"
             android:src="@drawable/roman_num_five"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/sevenPaceBadge"
@@ -239,9 +280,11 @@
             android:layout_columnSpan="1"
             android:layout_columnWeight="1"
             android:layout_gravity="fill_horizontal"
+            android:layout_margin="0dp"
             android:clickable="false"
+            android:padding="5dp"
             android:src="@drawable/roman_num_seven"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/tenPaceBadge"
@@ -250,9 +293,11 @@
             android:layout_columnSpan="1"
             android:layout_columnWeight="1"
             android:layout_gravity="fill_horizontal"
+            android:layout_margin="0dp"
             android:clickable="false"
+            android:padding="5dp"
             android:src="@drawable/roman_num_ten"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
     </GridLayout>
 </ScrollView>
