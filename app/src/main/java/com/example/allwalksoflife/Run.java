@@ -5,12 +5,7 @@ import android.os.Parcelable;
 
 import com.google.android.gms.maps.model.LatLng;
 
-import java.io.Serializable;
 import java.util.List;
-
-/**
- * Created by shvow on 11/28/2017.
- */
 
 public class Run implements Parcelable{
     //fields

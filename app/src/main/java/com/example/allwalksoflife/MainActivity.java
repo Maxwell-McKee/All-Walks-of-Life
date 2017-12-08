@@ -14,7 +14,11 @@ import android.widget.TextView;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
-import java.util.List;
+
+/**
+ * Profile menu icon: https://material.io/icons/#ic_person
+ * Start run menu icon: https://material.io/icons/#ic_directions_run
+ */
 
 public class MainActivity extends AppCompatActivity {
 

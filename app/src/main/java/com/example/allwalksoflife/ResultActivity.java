@@ -8,16 +8,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
-/**
- * Created by shvow on 12/3/2017.
- */
 
 public class ResultActivity  extends AppCompatActivity {
     //fields

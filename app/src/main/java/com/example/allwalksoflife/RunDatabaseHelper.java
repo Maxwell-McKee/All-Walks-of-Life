@@ -218,11 +218,6 @@ public class RunDatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    //TODO
-    public void deleteRun(Run run) {
-
-    }
-
     /**
      * Creates the default user using the default constructor
      * Should only be called when the database is created
