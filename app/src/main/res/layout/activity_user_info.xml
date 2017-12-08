@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:layout_gravity="fill_horizontal"
     android:columnCount="3"
+    android:paddingTop="5dp"
     tools:context="com.example.allwalksoflife.UserInfoActivity">
 
     <ImageView
@@ -18,7 +19,7 @@
         android:layout_marginRight="10dp"
         android:layout_row="0"
         android:layout_rowSpan="3"
-        app:srcCompat="@drawable/runner_blue" />
+        app:srcCompat="@drawable/walker_purple" />
 
     <EditText
         android:id="@+id/usernameEditText"

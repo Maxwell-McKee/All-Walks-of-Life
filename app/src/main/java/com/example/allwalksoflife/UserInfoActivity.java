@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CursorAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -42,10 +43,44 @@ public class UserInfoActivity extends AppCompatActivity {
         } else {
             ageText.setText("" + currentUser.getAge());
         }
+        final ImageView profilePic = findViewById(R.id.userPic);
+        switch (currentUser.getType()) {
+            case "Runner":
+                profilePic.setImageResource(R.drawable.runner_blue);
+                break;
+            case "Biker":
+                profilePic.setImageResource(R.drawable.biker_green);
+                break;
+            case "Walker":
+            default:
+                profilePic.setImageResource(R.drawable.walker_purple);
+        }
         Spinner activitySpinner = findViewById(R.id.activitySpinner);
         activityArrayAdapter = ArrayAdapter.createFromResource(this, R.array.activity_types, R.layout.custom_spinner_item);
         activitySpinner.setAdapter(activityArrayAdapter);
         activitySpinner.setSelection(activityArrayAdapter.getPosition(currentUser.getType()));
+        activitySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                switch (i) {
+                    case 0:
+                        profilePic.setImageResource(R.drawable.runner_blue);
+                        break;
+                    case 2:
+                        profilePic.setImageResource(R.drawable.biker_green);
+                        break;
+                    default:
+                    case 1:
+                        profilePic.setImageResource(R.drawable.walker_purple);
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
         ((EditText)findViewById(R.id.locationEditText)).setText(currentUser.getLocation());
 
         recordsListView = findViewById(R.id.recordsListView);
